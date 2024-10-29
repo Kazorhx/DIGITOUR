@@ -6,20 +6,18 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('price_histories', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->date('fecha_inicio');
+            $table->date('fecha_fin');
+            $table->integer('precio');
+            $table->unsignedBigInteger('producto_id'); // FK a producto
+            $table->foreign('producto_id')->references('id')->on('products');
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('price_histories');

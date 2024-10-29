@@ -8,4 +8,20 @@ use Illuminate\Database\Eloquent\Model;
 class ProductDetail extends Model
 {
     use HasFactory;
+
+    protected $table = 'product_details';
+
+    protected $fillable = ['disponible', 'perfil_id', 'producto_id'];
+
+    // Un detalle de producto pertenece a un perfil
+    public function profile()
+    {
+        return $this->belongsTo(Profile::class);
+    }
+
+    // Un detalle de producto pertenece a un producto
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
 }

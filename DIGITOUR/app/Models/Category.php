@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     use HasFactory;
+
+    protected $table = 'categories';
+
+    protected $fillable = ['descripcion'];
+
+    // Relación uno a muchos con Perfil
+    public function profile()
+    {
+        return $this->hasMany(Profile::class, 'tipoperfil_id');
+    }
 }

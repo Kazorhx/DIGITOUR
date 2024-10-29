@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Community extends Model
 {
     use HasFactory;
+
+    protected $table = 'communities';
+
+    protected $fillable = ['nombre', 'localidad'];
+
+    // Una comunidad pertenece a una comuna
+    public function commune()
+    {
+        return $this->belongsTo(Commune::class);
+    }
 }

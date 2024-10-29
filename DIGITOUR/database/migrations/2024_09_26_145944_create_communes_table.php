@@ -6,20 +6,16 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('communes', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('nombre', 50);
+            $table->unsignedBigInteger('provincia_id');  // FK a provincia
+            $table->foreign('provincia_id')->references('id')->on('provinces');   // Relaciones de FK
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('communes');
