@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -97,7 +98,7 @@ body {
 /*Perfile*/
 
 .custom-card {
-    background-color: rgba(122, 124, 126, 0.1); /* Color gris claro */
+    background-color: rgba(122, 124, 126, 0.1);
     border-radius: 15px; /* Esquinas redondeadas */
     padding: 20px;
     margin-top: 30px; /* Separación respecto al carrusel */
@@ -169,17 +170,18 @@ h2 {
 }
 /* Estilo para hacer el carrusel más pequeño */
 .carousel-container {
-    max-height: 400px; /* Ajusta la altura según lo necesario */
+    max-height: 400px;
     overflow: hidden;
 }
 .carousel-inner img {
     height: 100%;
     object-fit: cover; /* Mantener el aspecto de las imágenes */
 }
+
 /** mapa*/
 
 .map-container {
     display: flex;
     justify-content: center;
-    padding: 50px; /* Ajusta el padding si necesitas más o menos espacio */
+    padding: 50px;
 }

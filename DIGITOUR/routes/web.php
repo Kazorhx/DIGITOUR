@@ -8,6 +8,8 @@ Route::get('/', function () {
     return view('profilesTemplate.login');
 });
 
+
+
 Route::get('/dashboard-home', function () {
     return view('dashboard.home');
 })->name('dashboard.home');

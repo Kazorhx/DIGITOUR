@@ -36,7 +36,12 @@ class ProfileController extends Controller
      */
     public function show(Profile $profile)
     {
-        //
+        //agarra el id y consulta a la bd por la info de ese perfil
+        //hacer consultas a tablas relacionadas para más info
+          
+        //retorna la vista de perfil pasándole un objeto con la info (compact)
+
+
     }
 
     /**
