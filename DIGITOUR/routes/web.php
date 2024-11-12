@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 
@@ -7,8 +8,6 @@ use App\Http\Controllers\AuthController;
 Route::get('/', function () {
     return view('profilesTemplate.login');
 });
-
-
 
 Route::get('/dashboard-home', function () {
     return view('dashboard.home');
@@ -27,3 +26,6 @@ Route::get('/perfile', function () {
 
 // Ruta para cerrar sesión
 Route::post('/logout', [AuthController::class, 'logout'])->name('user.logout');
+
+// Ruta para mostrar el dashboard del administrador
+Route::get('/dashboard/admin', [UserController::class, 'showAdminDashboard'])->name('dashboard.admin');
