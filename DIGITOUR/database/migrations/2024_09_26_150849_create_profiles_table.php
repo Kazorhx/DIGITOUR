@@ -12,12 +12,13 @@ return new class extends Migration
             $table->id();
             $table->date('fecha_creacion');
             $table->string('tema', 50)->nullable(); // No requerido
+            $table->string('nombre', 50);
             $table->string('descripcion', 50);
             $table->string('redes_sociales', 50);
             $table->string('datos_contacto', 255);
             $table->string('url_geolocalizacion', 255);
-            $table->unsignedBigInteger('tipo_perfil_id'); // FK a tipo_perfil
-            $table->foreign('tipo_perfil_id')->references('id')->on('categories');
+            $table->unsignedBigInteger('categoria_id'); // FK a tipo_perfil
+            $table->foreign('categoria_id')->references('id')->on('categories');
             $table->unsignedBigInteger('usuario_id'); // FK a usuario
             $table->foreign('usuario_id')->references('id')->on('users');
         });
