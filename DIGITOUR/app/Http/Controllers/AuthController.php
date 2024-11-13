@@ -56,7 +56,7 @@ public function showSuscriptorDashboard()
     }
 public function showSuperUsuarioDashboard()
     {
-        return view('dashboardAdministrador.dashboardAdmin');
+        return view('dashboardSuperUsuario.dashboardSuper');
     }
 
 }

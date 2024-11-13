@@ -13,6 +13,8 @@ class OfferType extends Model
 
     protected $fillable = ['descripcion'];
 
+    public $timestamps=false;
+
     // Un tipo de oferta puede tener muchas ofertas
     public function offers()
     {

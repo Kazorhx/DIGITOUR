@@ -13,6 +13,8 @@ class Province extends Model
 
     protected $fillable = ['nombre', 'region_id'];
 
+    public $timestamps=false;
+    
     // Una provincia pertenece a una región
     public function region()
     {

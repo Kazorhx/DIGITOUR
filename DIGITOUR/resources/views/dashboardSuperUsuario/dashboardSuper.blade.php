@@ -242,7 +242,7 @@
             </div>
             <div class="modal-body">
 
-                <form method="POST" action="{{ route('registro.usuario') }}">
+                <form method="POST" action="{{ route('registro.administrador') }}">
                 @csrf
                     <div class="row g-3">
                         <!-- Columna 1 -->

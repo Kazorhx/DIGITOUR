@@ -13,6 +13,8 @@ class Category extends Model
 
     protected $fillable = ['descripcion'];
 
+    public $timestamps=false;
+
     // Relación uno a muchos con Perfil
     public function profile()
     {

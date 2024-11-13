@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('apellido', 50);
             $table->char('genero', 1);
             $table->date('fecha_nacimiento');
-            $table->string('telefono', 10);
+            $table->string('telefono', 15);
             $table->string('direccion', 50);
             $table->unsignedBigInteger('rol_id');  // FK a rol
             $table->unsignedBigInteger('estado_id');  // FK a estado usuario

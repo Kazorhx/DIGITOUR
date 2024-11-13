@@ -13,6 +13,8 @@ class Product extends Model
 
     protected $fillable = ['nombre', 'descripcion', 'codigo'];
 
+    public $timestamps=false;
+
     // Un producto puede tener muchos detalles de producto
     public function productDetails()
     {

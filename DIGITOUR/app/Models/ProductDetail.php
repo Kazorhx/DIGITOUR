@@ -13,6 +13,8 @@ class ProductDetail extends Model
 
     protected $fillable = ['disponible', 'perfil_id', 'producto_id'];
 
+    public $timestamps=false;
+
     // Un detalle de producto pertenece a un perfil
     public function profile()
     {

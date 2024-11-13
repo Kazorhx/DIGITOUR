@@ -16,6 +16,8 @@ class Profile extends Model
         'datoscontacto', 'geolocalizacion', 'tipoperfil_id', 'usuario_id'
     ];
 
+    public $timestamps=false;
+
     // Un perfil pertenece a un usuario
     public function user()
     {

@@ -13,6 +13,8 @@ class UserStatus extends Model
 
     protected $fillable = ['descripcion'];
 
+    public $timestamps=false;
+    
     // Un estado de usuario puede tener muchos usuarios
     public function user()
     {

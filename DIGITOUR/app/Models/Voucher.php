@@ -16,6 +16,8 @@ class Voucher extends Model
         'nombrebeneficiario', 'estadovoucher_id', 'oferta_id'
     ];
 
+    public $timestamps=false;
+
     // Un voucher pertenece a un estado de voucher
     public function voucherStatus()
     {

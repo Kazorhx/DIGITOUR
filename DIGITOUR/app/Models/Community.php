@@ -13,6 +13,8 @@ class Community extends Model
 
     protected $fillable = ['nombre', 'localidad'];
 
+    public $timestamps=false;
+
     // Una comunidad pertenece a una comuna
     public function commune()
     {

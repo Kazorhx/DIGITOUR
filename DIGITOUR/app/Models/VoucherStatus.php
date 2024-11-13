@@ -13,6 +13,8 @@ class VoucherStatus extends Model
 
     protected $fillable = ['descripcion'];
 
+    public $timestamps=false;
+
     // Un estado de voucher puede tener muchos vouchers
     public function Voucher()
     {

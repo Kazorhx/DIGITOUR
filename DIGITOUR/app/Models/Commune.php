@@ -13,6 +13,8 @@ class Commune extends Model
 
     protected $fillable = ['nombre', 'provincia_id'];
 
+    public $timestamps=false;
+
     // Una comuna pertenece a una provincia
     public function province()
     {

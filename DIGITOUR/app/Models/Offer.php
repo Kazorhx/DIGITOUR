@@ -16,6 +16,8 @@ class Offer extends Model
         'cantidadvoucher', 'tipooferta_id'
     ];
 
+    public $timestamps=false;
+
     // Una oferta pertenece a un tipo de oferta
     public function offerType()
     {

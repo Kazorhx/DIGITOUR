@@ -13,6 +13,8 @@ class PriceHistory extends Model
 
     protected $fillable = ['fechainicio', 'fechafin', 'precio', 'producto_id'];
 
+    public $timestamps=false;
+
     // Un histórico de precios pertenece a un producto
     public function product()
     {

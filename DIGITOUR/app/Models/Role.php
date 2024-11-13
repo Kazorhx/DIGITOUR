@@ -13,6 +13,8 @@ class Role extends Model
 
     protected $fillable = ['descripcion'];
 
+    public $timestamps=false;
+
     // Un rol puede tener muchos usuarios
     public function user()
     {

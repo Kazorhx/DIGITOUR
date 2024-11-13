@@ -33,8 +33,14 @@ Route::get('/dashboard/admin', [AuthController::class, 'showAdminDashboard'])->n
 // Ruta para mostrar el dashboard del administrador
 Route::get('/dashboard/sus', [AuthController::class, 'showSuscriptorDashboard'])->name('dashboard.suscriptor');
 
+// Ruta para mostrar el dashboard del administrador
+Route::get('/dashboard/super', [AuthController::class, 'showSuperUsuarioDashboard'])->name('dashboard.superusuario');
+
 // Ruta para registrar al usuario desde el modal
 Route::post('/registro/usuario', [UserController::class, 'registro'])->name('registro.usuario');
+
+// Ruta para registrar al administrador desde el modal
+Route::post('/registro/administrador', [UserController::class, 'registroadm'])->name('registro.administrador');
 
 //mostrar vista de login en navbar
 Route::get('/login', function () {
