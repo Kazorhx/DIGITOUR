@@ -6,7 +6,7 @@ use App\Http\Controllers\AuthController;
 
 // Ruta para redirigir a la página de inicio (login)
 Route::get('/', function () {
-    return view('profilesTemplate.login');
+    return view('viewsPrincipal.home');
 });
 
 Route::get('/dashboard-home', function () {
@@ -29,3 +29,6 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('user.logout');
 
 // Ruta para mostrar el dashboard del administrador
 Route::get('/dashboard/admin', [UserController::class, 'showAdminDashboard'])->name('dashboard.admin');
+
+// Ruta para registrar al usuario desde el modal
+Route::post('/registro/usuario', [UserController::class, 'registro'])->name('registro.usuario');

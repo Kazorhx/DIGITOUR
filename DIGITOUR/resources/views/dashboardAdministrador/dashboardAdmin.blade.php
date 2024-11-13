@@ -238,7 +238,11 @@
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
-                <form method="POST" action="">
+                @if (session('success'))
+                <div class="alert alert-success">{{ session('success') }}</div>
+                @endif
+                <form method="POST" action="{{ route('registro.usuario') }}">
+                @csrf
                     <div class="row g-3">
                         <!-- Columna 1 -->
                         <div class="col-md-6">
@@ -272,10 +276,10 @@
                             <input type="date" class="form-control" name="fecha_nacimiento">
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label">Sexo</label>
+                            <label class="form-label">Genero</label>
                             <select class="form-select" name="sexo">
-                                <option value="Masculino">Masculino</option>
-                                <option value="Femenino">Femenino</option>
+                                <option value="Masculino">M</option>
+                                <option value="Femenino">F</option>
                             </select>
                         </div>
                         <div class="col-md-6">
