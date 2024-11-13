@@ -143,7 +143,7 @@
                 <div class="d-flex justify-content-between align-items-center">
                     <div>
                         <h3 class="mb-0">5</h3>
-                        <p class="text-muted mb-0"> SuperUsuarios Totales</p>
+                        <p class="text-muted mb-0"> Usuarios Totales</p>
                     </div>
                     <div class="stat-icon green-glow">
                         <i class="bi bi-people fs-4"></i>
@@ -156,7 +156,7 @@
                 <div class="d-flex justify-content-between align-items-center">
                     <div>
                         <h3 class="mb-0">3</h3>
-                        <p class="text-muted mb-0">SuperUsuarios Activos</p>
+                        <p class="text-muted mb-0">Usuarios Activos</p>
                     </div>
                     <div class="stat-icon cyan-glow">
                         <i class="bi bi-person-check fs-4"></i>
@@ -169,7 +169,7 @@
                 <div class="d-flex justify-content-between align-items-center">
                     <div>
                         <h3 class="mb-0">2</h3>
-                        <p class="text-muted mb-0">Nuevos administradores </p>
+                        <p class="text-muted mb-0">Nuevos administradores y usuarios </p>
                     </div>
                     <div class="stat-icon green-glow">
                         <i class="bi bi-person-plus fs-4"></i>
@@ -184,7 +184,7 @@
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h5 class="mb-0">Gestión de Usuarios</h5>
             <button class="btn btn-green" data-bs-toggle="modal" data-bs-target="#userModal">
-                <i class="bi bi-person-plus"></i> Nuevo Super Usuario
+                <i class="bi bi-person-plus"></i> Nuevo Usuario/Administrador
             </button>
         </div>
 @if (session('success'))
@@ -236,7 +236,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content bg-dark">
             <div class="modal-header border-0">
-                <h5 class="modal-title">Nuevo Super Usuario</h5>
+                <h5 class="modal-title">NuevoUsuario</h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
