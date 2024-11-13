@@ -21,7 +21,7 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
-        /* Título */
+     
         h2 {
             color: #00bfa5;
             font-weight: bold;
@@ -67,38 +67,33 @@
 <div class="dashboard">
     <h2 class="text-center">Dashboard del Usuario</h2>
     <form id="user-content-form">
-        <!-- Nombre del Emprendimiento -->
 
         <div class="mb-3">
             <label for="businessName" class="form-label">Nombre del Emprendimiento</label>
             <input type="text" class="form-control" id="businessName" name="businessName" required>
         </div>
 
-        <!-- Descripción -->
         <div class="mb-3">
             <label for="description" class="form-label">Descripción</label>
             <textarea class="form-control" id="description" name="description" rows="4" required></textarea>
         </div>
 
-        <!-- Redes Sociales -->
         <div class="mb-3">
             <label for="socialMedia" class="form-label">Redes Sociales</label>
             <input type="text" class="form-control" id="socialMedia" name="socialMedia" placeholder="Ej: https://facebook.com/miemprendimiento">
         </div>
 
-        <!-- Datos de Contacto -->
         <div class="mb-3">
             <label for="contact" class="form-label">Datos de Contacto</label>
             <input type="text" class="form-control" id="contact" name="contact" placeholder="Email o Teléfono" required>
         </div>
 
-        <!-- Localización -->
         <div class="mb-3">
             <label for="location" class="form-label">Geolocalización</label>
             <input type="text" class="form-control" id="location" name="location" placeholder="Url de Geolocalización" required>
         </div>
 
-        <!-- Botón de Guardar -->
+
         <button type="submit" class="btn btn-success w-100">Guardar Cambios</button>
     </form>
 </div>
