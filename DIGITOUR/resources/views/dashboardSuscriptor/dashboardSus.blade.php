@@ -68,6 +68,7 @@
     <h2 class="text-center">Dashboard del Usuario</h2>
     <form id="user-content-form">
         <!-- Nombre del Emprendimiento -->
+
         <div class="mb-3">
             <label for="businessName" class="form-label">Nombre del Emprendimiento</label>
             <input type="text" class="form-control" id="businessName" name="businessName" required>
