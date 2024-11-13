@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -9,7 +10,7 @@
     <style>
         :root {
             --primary-bg: #1e2936;
-            --secondary-bg: #2a3746;
+            --secondary-bg: #2a3747;
             --accent-green: #37f34d;
             --accent-cyan: #3ff6ce;
         }
@@ -38,14 +39,14 @@
             color: white;
         }
 
-        .stat-icon {
+       .stat-icon {
             width: 60px;
             height: 60px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
+            color: white !important;
         }
 
         .green-glow {
@@ -111,6 +112,9 @@
         .btn-green:hover {
             background-color: #2cb33e;
             color: white;
+        }
+        .text-muted.mb-0 {
+           color: white !important;
         }
     </style>
 </head>
