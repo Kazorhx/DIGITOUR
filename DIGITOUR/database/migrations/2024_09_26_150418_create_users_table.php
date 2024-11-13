@@ -20,9 +20,9 @@ return new class extends Migration
             $table->string('telefono', 10);
             $table->string('direccion', 50);
             $table->unsignedBigInteger('rol_id');  // FK a rol
-            $table->unsignedBigInteger('estado_usuario_id');  // FK a estado usuario
+            $table->unsignedBigInteger('estado_id');  // FK a estado usuario
             $table->foreign('rol_id')->references('id')->on('roles');  // Relaciones de clave foránea
-            $table->foreign('estado_usuario_id')->references('id')->on('user_statuses');  // Relaciones de clave foránea
+            $table->foreign('estado_id')->references('id')->on('user_statuses');  // Relaciones de clave foránea
         });
     }
 

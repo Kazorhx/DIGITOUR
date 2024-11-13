@@ -28,7 +28,15 @@ Route::get('/perfile', function () {
 Route::post('/logout', [AuthController::class, 'logout'])->name('user.logout');
 
 // Ruta para mostrar el dashboard del administrador
-Route::get('/dashboard/admin', [UserController::class, 'showAdminDashboard'])->name('dashboard.admin');
+Route::get('/dashboard/admin', [AuthController::class, 'showAdminDashboard'])->name('dashboard.admin');
+
+// Ruta para mostrar el dashboard del administrador
+Route::get('/dashboard/sus', [AuthController::class, 'showSuscriptorDashboard'])->name('dashboard.suscriptor');
 
 // Ruta para registrar al usuario desde el modal
 Route::post('/registro/usuario', [UserController::class, 'registro'])->name('registro.usuario');
+
+//mostrar vista de login en navbar
+Route::get('/login', function () {
+    return view('profilesTemplate.login');
+})->name('login');

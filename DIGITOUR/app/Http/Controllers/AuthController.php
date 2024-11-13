@@ -41,7 +41,24 @@ public function login(Request $request)
          // y el segundo es el mensaje de error, la idea es que se muestre en el front
          return redirect()->back()->with('error', 'Nombre de usuario o contraseña incorrectos');
         }
+
+
 }
+
+public function showAdminDashboard()
+    {
+        return view('dashboardAdministrador.dashboardAdmin');
+    }
+
+public function showSuscriptorDashboard()
+    {
+        return view('dashboardSuscriptor.dashboardSus');
+    }
+public function showSuperUsuarioDashboard()
+    {
+        return view('dashboardAdministrador.dashboardAdmin');
+    }
+
 }
 
 

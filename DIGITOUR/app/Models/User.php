@@ -19,7 +19,7 @@ class User extends Model
         'nombre', 'email', 'password', 'apellido', 'genero',
         'fechanacimiento', 'telefono', 'direccion', 'rol_id', 'estado_id'
     ];
-
+    public $timestamps=false;
     // Un usuario pertenece a un rol
     public function role()
     {

@@ -74,9 +74,7 @@
             </ul>
 
             <!-- Botón de Login -->
-            <button class="btn btn-outline-primary ms-3" type="button" data-bs-toggle="modal" data-bs-target="#loginModal">
-                Iniciar sesión
-            </button>
+             <a href="{{ route('login') }}" class="btn btn-outline-primary ms-3">Iniciar sesión</a
         </div>
     </div>
 </nav>

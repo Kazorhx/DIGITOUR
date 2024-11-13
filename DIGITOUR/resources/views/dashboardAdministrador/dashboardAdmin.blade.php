@@ -186,7 +186,9 @@
                 <i class="bi bi-person-plus"></i> Nuevo Usuario
             </button>
         </div>
-
+@if (session('success'))
+                <div class="alert alert-success">{{ session('success') }}</div>
+                @endif
         <div class="table-responsive">
             <table class="table table-hover">
                 <thead>
@@ -238,9 +240,7 @@
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
-                @if (session('success'))
-                <div class="alert alert-success">{{ session('success') }}</div>
-                @endif
+
                 <form method="POST" action="{{ route('registro.usuario') }}">
                 @csrf
                     <div class="row g-3">
@@ -278,22 +278,8 @@
                         <div class="col-md-6">
                             <label class="form-label">Genero</label>
                             <select class="form-select" name="sexo">
-                                <option value="Masculino">M</option>
-                                <option value="Femenino">F</option>
-                            </select>
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label">Rol</label>
-                            <select class="form-select" name="rol">
-                                <option value="admin">Administrador</option>
-                                <option value="user">Usuario</option>
-                            </select>
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label">Estado</label>
-                            <select class="form-select" name="estado">
-                                <option value="activo">Activo</option>
-                                <option value="inactivo">Inactivo</option>
+                                <option value="M">M</option>
+                                <option value="F">F</option>
                             </select>
                         </div>
                     </div>

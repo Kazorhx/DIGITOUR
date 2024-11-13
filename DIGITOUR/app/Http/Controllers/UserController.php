@@ -7,13 +7,11 @@ use App\Models\User;
 
 class UserController extends Controller
 {
-    public function showAdminDashboard()
-    {
-        return view('dashboardAdministrador.dashboardAdmin');
-    }
 
 public function registro(Request $request)
-    {
+
+{
+
         // Validación de los datos del formulario
         $request->validate([
             'nombre' => 'required|string|max:255',
@@ -24,8 +22,6 @@ public function registro(Request $request)
             'direccion' => 'nullable|string|max:255',
             'fecha_nacimiento' => 'nullable|date',
             'genero' => 'nullable|string',
-            'rol_id' => 'required|string',
-            'estado' => 'required|string'
         ]);
 
         // Guardar el nuevo usuario
@@ -38,8 +34,8 @@ public function registro(Request $request)
         $user->direccion = $request->direccion;
         $user->fecha_nacimiento = $request->fecha_nacimiento;
         $user->genero = $request->sexo;
-        $user->rol_id = $request->rol;
-        $user->estado = $request->estado;
+        $user->rol_id = 2;
+        $user->estado_id = 1;
         $user->save();
 
         // Redirigir con un mensaje de éxito
