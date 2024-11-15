@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard SuperAdministrador</title>
+    <title>Dashboard SuperUsuario</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <style>
@@ -142,8 +142,8 @@
             <div class="stat-card">
                 <div class="d-flex justify-content-between align-items-center">
                     <div>
-                        <h3 class="mb-0">285</h3>
-                        <p class="text-muted mb-0">Usuarios Totales</p>
+                        <h3 class="mb-0">5</h3>
+                        <p class="text-muted mb-0"> Usuarios Totales</p>
                     </div>
                     <div class="stat-icon green-glow">
                         <i class="bi bi-people fs-4"></i>
@@ -155,7 +155,7 @@
             <div class="stat-card">
                 <div class="d-flex justify-content-between align-items-center">
                     <div>
-                        <h3 class="mb-0">197</h3>
+                        <h3 class="mb-0">3</h3>
                         <p class="text-muted mb-0">Usuarios Activos</p>
                     </div>
                     <div class="stat-icon cyan-glow">
@@ -168,8 +168,8 @@
             <div class="stat-card">
                 <div class="d-flex justify-content-between align-items-center">
                     <div>
-                        <h3 class="mb-0">352</h3>
-                        <p class="text-muted mb-0">Nuevos administradores y Usuarios</p>
+                        <h3 class="mb-0">2</h3>
+                        <p class="text-muted mb-0">Nuevos administradores y usuarios </p>
                     </div>
                     <div class="stat-icon green-glow">
                         <i class="bi bi-person-plus fs-4"></i>
@@ -184,7 +184,7 @@
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h5 class="mb-0">Gestión de Usuarios</h5>
             <button class="btn btn-green" data-bs-toggle="modal" data-bs-target="#userModal">
-                <i class="bi bi-person-plus"></i> Nuevo Usuario
+                <i class="bi bi-person-plus"></i> Nuevo Usuario/Administrador
             </button>
         </div>
 @if (session('success'))
@@ -231,7 +231,62 @@
         </div>
     </div>
 </div>
+<!-- Modal para Nuevo Usuario -->
+<div class="modal fade" id="userModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content bg-dark">
+            <div class="modal-header border-0">
+                <h5 class="modal-title">NuevoUsuario</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
 
+                <form method="POST" action="{{ route('registro.usuario') }}">
+                @csrf
+                    <div class="row g-3">
+                        <!-- Columna 1 -->
+                        <div class="col-md-6">
+                            <label class="form-label">Nombre</label>
+                            <input type="text" class="form-control" name="nombre" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Apellido</label>
+                            <input type="text" class="form-control" name="apellido" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Correo Electrónico</label>
+                            <input type="email" class="form-control" name="correo_electronico" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Contraseña</label>
+                            <input type="password" class="form-control" name="password" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Teléfono</label>
+                            <input type="tel" class="form-control" name="telefono">
+                        </div>
+
+                        <!-- Columna 2 -->
+                        <div class="col-md-6">
+                            <label class="form-label">Dirección</label>
+                            <input type="text" class="form-control" name="direccion">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Fecha de Nacimiento</label>
+                            <input type="date" class="form-control" name="fecha_nacimiento">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Genero</label>
+                            <select class="form-select" name="sexo">
+                                <option value="M">M</option>
+                                <option value="F">F</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer border-0">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-green">Guardar</button>
+                    </div>
 <!-- Modal para Nuevo Usuario -->
 <div class="modal fade" id="userModal" tabindex="-1">
     <div class="modal-dialog modal-lg">

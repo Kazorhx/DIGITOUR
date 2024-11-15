@@ -141,13 +141,19 @@
         <aside class="sidebar">
             <div class="logo-area">
                 <div class="logo-circle"></div>
-                <h2>Panel Admin</h2>
+                <h2>Panel Suscriptor</h2>
             </div>
             <!-- Nuevo navbar -->
             <nav class="navbar">
                 <div class="nav-item active">
                     <span>📊</span>
-                    <span>Dashboard</span>
+                    <span>Contenido</span>
+                </div>
+            </nav>
+             <nav class="navbar">
+                <div class="nav-item">
+                    <span>📊</span>
+                    <span>Vouchers y ofertas </span>
                 </div>
             </nav>
         </aside>

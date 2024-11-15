@@ -40,7 +40,7 @@
                 <img src="{{ asset('images/comida2.jpg') }}" alt="Plato destacado" class="img-fluid rounded">
             </div>
             <div class="col-md-8">
-                <h2>{{ $perfil->nombre }}/h2>
+                <h2>Restaurante Doña Juanita</h2>
                 <p>
                     Restaurante Doña Juanita es un acogedor establecimiento ubicado en la comuna de Las Higueras, conocido por ofrecer auténtica comida tradicional chilena. Nos especializamos en la preparación de platos tradicionales, utilizando ingredientes frescos y locales para garantizar el mejor sabor en cada uno de nuestros platos caseros.
                 </p>
@@ -52,11 +52,10 @@
     <section class="productos-destacados mt-4">
         <h3 class="text-center mb-4">Productos destacados</h3>
         <div class="row">
-        @foreach($prod in $prods)
+         <div class="restaurant-info mb-4">
+        <div class="row align-items-center">
+            <div class="col-md-4">
 
-            {{ $prod->nombre }}
-        {{  $prod->descripcion }}
-            <div class="col-md-4 mb-4">
                 <div class="product-card text-center">
                     <img src="{{ asset('images/comida2.jpg') }}" alt="Producto 1" class="img-fluid">
                     <h5>Plato 1</h5>
