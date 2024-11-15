@@ -281,6 +281,15 @@
                                 <option value="F">F</option>
                             </select>
                         </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Categoria</label>
+                            <select class="form-select" name="categoria_id">
+                                <option value="1">Hoteleria</option>
+                                <option value="2">Gastronomia</option>
+                                <option value="3">Actividades</option>
+                                <option value="4">Artesanias</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="modal-footer border-0">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
