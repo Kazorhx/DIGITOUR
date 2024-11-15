@@ -178,7 +178,7 @@
             </div>
         </div>
     </div>
-
+    
     <!-- Tabla de Usuarios y Formulario -->
     <div class="data-card p-4">
         <div class="d-flex justify-content-between align-items-center mb-4">
