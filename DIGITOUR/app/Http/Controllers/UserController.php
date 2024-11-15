@@ -67,7 +67,7 @@ public function registroadm(Request $request)
         $user->telefono = $request->telefono;
         $user->direccion = $request->direccion;
         $user->fecha_nacimiento = $request->fecha_nacimiento;
-        $user->genero = $request->sexo;
+        $user->genero = $request->genero;
         $user->rol_id = 1;
         $user->estado_id = 1;
         $user->save();

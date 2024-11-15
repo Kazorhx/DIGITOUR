@@ -236,62 +236,6 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content bg-dark">
             <div class="modal-header border-0">
-                <h5 class="modal-title">NuevoUsuario</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-            </div>
-            <div class="modal-body">
-
-                <form method="POST" action="{{ route('registro.usuario') }}">
-                @csrf
-                    <div class="row g-3">
-                        <!-- Columna 1 -->
-                        <div class="col-md-6">
-                            <label class="form-label">Nombre</label>
-                            <input type="text" class="form-control" name="nombre" required>
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label">Apellido</label>
-                            <input type="text" class="form-control" name="apellido" required>
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label">Correo Electrónico</label>
-                            <input type="email" class="form-control" name="correo_electronico" required>
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label">Contraseña</label>
-                            <input type="password" class="form-control" name="password" required>
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label">Teléfono</label>
-                            <input type="tel" class="form-control" name="telefono">
-                        </div>
-
-                        <!-- Columna 2 -->
-                        <div class="col-md-6">
-                            <label class="form-label">Dirección</label>
-                            <input type="text" class="form-control" name="direccion">
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label">Fecha de Nacimiento</label>
-                            <input type="date" class="form-control" name="fecha_nacimiento">
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label">Genero</label>
-                            <select class="form-select" name="sexo">
-                                <option value="M">M</option>
-                                <option value="F">F</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="modal-footer border-0">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="submit" class="btn btn-green">Guardar</button>
-                    </div>
-<!-- Modal para Nuevo Usuario -->
-<div class="modal fade" id="userModal" tabindex="-1">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content bg-dark">
-            <div class="modal-header border-0">
                 <h5 class="modal-title">Nuevo Usuario</h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
             </div>
@@ -333,7 +277,7 @@
                         </div>
                         <div class="col-md-6">
                             <label class="form-label">Genero</label>
-                            <select class="form-select" name="sexo">
+                            <select class="form-select" name="genero">
                                 <option value="M">M</option>
                                 <option value="F">F</option>
                             </select>
