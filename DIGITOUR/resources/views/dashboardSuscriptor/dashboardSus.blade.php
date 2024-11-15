@@ -156,7 +156,7 @@
             <div class="content-form">
                 <div class="form-header">
                     <h2>Información del Emprendimiento</h2>
-                    <button class="btn-green">Guardar Cambios</button>
+
                 </div>
 
                 <form>
@@ -173,21 +173,23 @@
                     <div class="form-group">
                         <label>Redes Sociales</label>
                         <div class="social-inputs">
-                            <input type="text" placeholder="Facebook URL">
-                            <input type="text" placeholder="Instagram URL">
+                            <input type="text" placeholder="Ingrese URL de red social">
+
+
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label>Datos de Contacto</label>
                         <input type="tel" placeholder="Teléfono">
-                        <input type="email" placeholder="Correo electrónico">
+
                     </div>
 
                     <div class="form-group">
                         <label>Geolocalización</label>
                         <input type="text" placeholder="URL de Google Maps">
                     </div>
+                     <button class="btn-green">Guardar Cambios</button>
                 </form>
             </div>
         </main>

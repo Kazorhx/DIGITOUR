@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             RolesSeeder::class,
             UserstatusesSeeder::class,
             VoucherstatusesSeeder::class,
+            categoriesSeeder::class
         ]);
     }
 }
