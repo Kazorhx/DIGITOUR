@@ -7,9 +7,30 @@ use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function hoteleria()
+    {
+        $perfiles = Profile::where('categoria_id', 1)->get(); // Hotelería
+        return view('viewsPrincipal.hoteleria', compact('perfiles'));
+    }
+
+    public function gastronomia()
+    {
+        $perfiles = Profile::where('categoria_id', 2)->get(); // Gastronomía
+        return view('viewsPrincipal.gastronomia', compact('perfiles'));
+    }
+
+    public function actividades()
+    {
+        $perfiles = Profile::where('categoria_id', 3)->get(); // Actividades
+        return view('viewsPrincipal.actividades', compact('perfiles'));
+    }
+
+    public function artesanias()
+    {
+        $perfiles = Profile::where('categoria_id', 4)->get(); // Artesanías
+        return view('viewsPrincipal.artesanias', compact('perfiles'));
+    }
+
     public function index()
     {
         //

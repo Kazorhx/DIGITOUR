@@ -3,6 +3,7 @@
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProfileController;
 
 // Ruta para redirigir a la página de inicio (login)
 Route::get('/', function () {
@@ -46,3 +47,9 @@ Route::post('/registro/administrador', [UserController::class, 'registroadm'])->
 Route::get('/login', function () {
     return view('profilesTemplate.login');
 })->name('login');
+
+// rutas para mostrar las vistas de las categorias segun los id de la categoria_perfil
+Route::get('/perfiles/hoteleria', [ProfileController::class, 'hoteleria'])->name('viewsPrincipal.hoteleria');
+Route::get('/perfiles/gastronomia', [ProfileController::class, 'gastronomia'])->name('viewsPrincipal.gastronomia');
+Route::get('/perfiles/actividades', [ProfileController::class, 'actividades'])->name('viewsPrincipal.actividades');
+Route::get('/perfiles/artesanias', [ProfileController::class, 'artesanias'])->name('viewsPrincipal.artesanias');
