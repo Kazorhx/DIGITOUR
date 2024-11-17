@@ -133,14 +133,7 @@
             background-color: #239336;
         }
 
-        /* Pie de página */
-        .footer {
-            background: #4DC0B5;
-            color: white;
-            padding: 40px 20px;
-            margin-top: 40px;
-        }
-
+ 
         .footer-content {
             max-width: 1200px;
             margin: 0 auto;
@@ -204,32 +197,6 @@
             </div>
         </div>
     </section>
-
-    <!-- Pie de página -->
-    <footer class="footer">
-        <div class="footer-content">
-            <ul class="footer-links">
-                <li><a href="#">Inicio</a></li>
-                <li><a href="#">Nosotros</a></li>
-                <li><a href="#">Servicios</a></li>
-            </ul>
-            <ul class="footer-links">
-                <li><a href="#">Contacto</a></li>
-                <li><a href="#">Blog</a></li>
-                <li><a href="#">FAQ</a></li>
-            </ul>
-            <ul class="footer-links">
-                <li><a href="#">Términos</a></li>
-                <li><a href="#">Privacidad</a></li>
-                <li><a href="#">Legal</a></li>
-            </ul>
-            <ul class="footer-links">
-                <li><a href="#">Carreras</a></li>
-                <li><a href="#">Socios</a></li>
-                <li><a href="#">Noticias</a></li>
-            </ul>
-        </div>
-    </footer>
 </body>
 </html>
 @endsection
