@@ -130,7 +130,7 @@
     <div class="cabins-section">
         <div class="cabin-card">
             <div class="cabin-image-container">
-                <img src="/api/placeholder/300/200" alt="Cabañas Los Maquis">
+                <img src="{{ asset('images/hospedaje 2.jpeg') }}" alt="Cabañas Los Maquis">
             </div>
             <div class="cabin-content">
                 <h3 class="cabin-title">Cabañas Los Maquis</h3>
@@ -141,7 +141,7 @@
 
         <div class="cabin-card">
             <div class="cabin-image-container">
-                <img src="/api/placeholder/300/200" alt="Cabañas El Puente">
+                <img src="{{ asset('images/cabañapremiun.jpg') }}" alt="Cabañas El Puente">
             </div>
             <div class="cabin-content">
                 <h3 class="cabin-title">Cabañas El Puente</h3>
@@ -152,7 +152,7 @@
 
         <div class="cabin-card">
             <div class="cabin-image-container">
-                <img src="/api/placeholder/300/200" alt="Cabañas El Roble">
+                <img src="{{ asset('images/hospedaje1.jpeg') }}" alt="Cabañas El Roble">
             </div>
             <div class="cabin-content">
                 <h3 class="cabin-title">Cabañas El Roble</h3>

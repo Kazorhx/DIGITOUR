@@ -121,7 +121,7 @@
 </head>
 <body>
     <section class="hero">
-        <img src="/api/placeholder/1200/400" alt="Artesanías en Los Queñes">
+        <img src="{{ asset('images/artesania1349.png') }}" alt="Artesanías en Los Queñes">
         <div class="hero-text">Descubre el arte local<br>en Los Queñes</div>
     </section>
 
@@ -132,7 +132,7 @@
     <div class="artisans-section">
         <div class="artisan-card">
             <div class="artisan-image-container">
-                <img src="/api/placeholder/300/200" alt="Telar Los Queñes">
+                <img src="{{ asset('images/artesania.jpeg') }}" alt="Telar Los Queñes">
             </div>
             <div class="artisan-content">
                 <h3 class="artisan-title">Telar Los Queñes</h3>
@@ -143,7 +143,7 @@
 
         <div class="artisan-card">
             <div class="artisan-image-container">
-                <img src="/api/placeholder/300/200" alt="Alfarería Nativa">
+                <img src="{{ asset('images/artesania3.jpeg') }}" alt="Alfarería Nativa">
             </div>
             <div class="artisan-content">
                 <h3 class="artisan-title">Alfarería Nativa</h3>
@@ -154,7 +154,7 @@
 
         <div class="artisan-card">
             <div class="artisan-image-container">
-                <img src="/api/placeholder/300/200" alt="Tallados en Madera">
+                <img src="{{ asset('images/artesania5.jpg') }}" alt="Tallados en Madera">
             </div>
             <div class="artisan-content">
                 <h3 class="artisan-title">Tallados en Madera</h3>
@@ -165,7 +165,7 @@
 
         <div class="artisan-card">
             <div class="artisan-image-container">
-                <img src="/api/placeholder/300/200" alt="Joyería Artesanal">
+                <img src="{{ asset('images/artesania4.jpg') }}" alt="Joyería Artesanal">
             </div>
             <div class="artisan-content">
                 <h3 class="artisan-title">Joyería Artesanal</h3>
