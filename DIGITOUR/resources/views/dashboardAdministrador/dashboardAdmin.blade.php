@@ -179,56 +179,67 @@
 
     <!-- Tabla de Usuarios y Formulario -->
     <div class="data-card p-4">
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <h5 class="mb-0">Gestión de Usuarios</h5>
-            <button class="btn btn-green" data-bs-toggle="modal" data-bs-target="#userModal">
-                <i class="bi bi-person-plus"></i> Nuevo Usuario
-            </button>
-        </div>
-@if (session('success'))
-                <div class="alert alert-success">{{ session('success') }}</div>
-                @endif
-        <div class="table-responsive">
-            <table class="table table-hover">
-                <thead>
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h5 class="mb-0">Gestión de Usuarios</h5>
+        <button class="btn btn-green" data-bs-toggle="modal" data-bs-target="#userModal">
+            <i class="bi bi-person-plus"></i> Nuevo Usuario
+        </button>
+    </div>
+    @if (session('success'))
+        <div class="alert alert-success">{{ session('success') }}</div>
+    @endif
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Email</th>
+                    <th>Teléfono</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($usuarios as $usuario)
                     <tr>
-                        <th>ID</th>
-                        <th>Nombre</th>
-                        <th>Apellido</th>
-                        <th>Correo</th>
-                        <th>Teléfono</th>
-                        <th>Rol</th>
-                        <th>Estado</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Aquí irá el código PHP para mostrar los usuarios -->
-                  <!-- <?php
-                        // Ejemplo: Conectar a la base de datos y obtener los usuarios
-                        // $usuarios = obtenerUsuarios(); // función ficticia
-                        // foreach($usuarios as $usuario) {
-                        //     echo "<tr>";
-                        //     echo "<td>{$usuario['id']}</td>";
-                        //     echo "<td>{$usuario['nombre']}</td>";
-                        //     echo "<td>{$usuario['apellido']}</td>";
-                        //     echo "<td>{$usuario['correo']}</td>";
-                        //     echo "<td>{$usuario['telefono']}</td>";
-                        //     echo "<td>{$usuario['rol']}</td>";
-                        //     echo "<td>{$usuario['estado']}</td>";
-                        //     echo "<td>
-                        //             <a href='#' class='btn btn-sm btn-light'>Editar</a>
-                        //             <a href='#' class='btn btn-sm btn-danger'>Eliminar</a>
-                        //           </td>";
-                        //     echo "</tr>";
-                        // }
-                    ?> >-->
+                        <td>{{ $usuario->id }}</td>
+                        <td>{{ $usuario->nombre }}</td>
+                        <td>{{ $usuario->apellido }}</td>
+                        <td>{{ $usuario->email }}</td>
+                        <td>{{ $usuario->telefono }}</td>
+                        <td>
+                            @if ($usuario->estado_id == 2)
+                                <span class="badge bg-danger">Inhabilitado</span>
+                            @else
+                                <span class="badge bg-success">Activo</span>
+                            @endif
+                        </td>
+                        <td>
+                            <form method="POST" action="{{ route('usuarios.toggleEstado', $usuario->id) }}" style="display:inline;">
+                                @csrf
+                                @method('PATCH')
+                                <button type="submit" class="btn btn-sm btn-warning">
+                                    {{ $usuario->estado_id == 2 ? 'Habilitar' : 'Inhabilitar' }}
+                                </button>
+                            </form>
 
-                </tbody>
-            </table>
-        </div>
+                            <a href="{{ route('usuarios.edit', $usuario->id) }}" class="btn btn-sm btn-light">Editar</a>
+
+                            <form method="POST" action="{{ route('usuarios.destroy', $usuario->id) }}" style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
     </div>
 </div>
+
 
 <!-- Modal para Nuevo Usuario -->
 <div class="modal fade" id="userModal" tabindex="-1">

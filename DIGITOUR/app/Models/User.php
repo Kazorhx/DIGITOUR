@@ -35,7 +35,7 @@ class User extends Model
     // Un usuario tiene un perfil
     public function profile()
     {
-        return $this->hasOne(Profile::class);
+        return $this->hasOne(Profile::class, 'usuario_id', 'id');
     }
 
 }

@@ -31,10 +31,10 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('user.logout');
 // Ruta para mostrar el dashboard del administrador
 Route::get('/dashboard/admin', [AuthController::class, 'showAdminDashboard'])->name('dashboard.admin');
 
-// Ruta para mostrar el dashboard del administrador
+// Ruta para mostrar el dashboard del suscriptor
 Route::get('/dashboard/sus', [AuthController::class, 'showSuscriptorDashboard'])->name('dashboard.suscriptor');
 
-// Ruta para mostrar el dashboard del administrador
+// Ruta para mostrar el dashboard del superusuario
 Route::get('/dashboard/super', [AuthController::class, 'showSuperUsuarioDashboard'])->name('dashboard.superusuario');
 
 // Ruta para registrar al usuario desde el modal
@@ -53,3 +53,10 @@ Route::get('/perfiles/hoteleria', [ProfileController::class, 'hoteleria'])->name
 Route::get('/perfiles/gastronomia', [ProfileController::class, 'gastronomia'])->name('viewsPrincipal.gastronomia');
 Route::get('/perfiles/actividades', [ProfileController::class, 'actividades'])->name('viewsPrincipal.actividades');
 Route::get('/perfiles/artesanias', [ProfileController::class, 'artesanias'])->name('viewsPrincipal.artesanias');
+
+
+Route::get('/dashboard/admin', [UserController::class, 'index'])->name('usuarios.index'); // Mostrar usuarios
+Route::patch('/dashboard/admin/{id}/toggleEstado', [UserController::class, 'toggleEstado'])->name('usuarios.toggleEstado');
+Route::get('/usuarios/{id}/editar', [UserController::class, 'edit'])->name('usuarios.edit'); // Formulario de edición
+Route::delete('/usuarios/{id}', [UserController::class, 'destroy'])->name('usuarios.destroy'); // Eliminar usuario
+Route::put('/usuarios/{id}', [UserController::class, 'update'])->name('usuarios.update'); // Actualizar usuario
