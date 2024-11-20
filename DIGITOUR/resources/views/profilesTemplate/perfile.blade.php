@@ -169,46 +169,6 @@
         </div>
     </div>
 
-    <!-- Información del restaurante -->
-    <div class="restaurant-info mb-4">
-        <div class="row align-items-center">
-            <div class="col-md-4">
-                <img src="{{ asset('images/comida2.jpg') }}" alt="Plato destacado" class="img-fluid rounded">
-            </div>
-            <div class="col-md-8">
-                <h2>Restaurante Doña Juanita</h2>
-                <p>
-                    Restaurante Doña Juanita es un acogedor establecimiento ubicado en la comuna de Los Queñes.
-                </p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Productos destacados -->
-    <section class="productos-destacados mt-4">
-        <h3>Productos destacados</h3>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="product-card">
-                    <img src="{{ asset('images/pizza.jpeg') }}" alt="Producto 1">
-                    <h5>Producto 1</h5>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="product-card">
-                    <img src="{{ asset('images/comida2.jpg') }}" alt="Producto 2">
-                    <h5>Producto 2</h5>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="product-card">
-                    <img src="{{ asset('images/hambuergesa.webp') }}" alt="Producto 3">
-                    <h5>Producto 3</h5>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Ofertas -->
     <section class="ofertas-section mt-4">
         <h3>Ofertas</h3>
@@ -247,20 +207,21 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form>
+                <form id="voucherForm" action="{{ route('voucher.create') }}" method="POST">
+                    @csrf
                     <div class="mb-3">
                         <label for="nombre" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" id="nombre" placeholder="Ingrese su nombre" required>
+                        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese su nombre" required>
                     </div>
                     <div class="mb-3">
                         <label for="rut" class="form-label">RUT</label>
-                        <input type="text" class="form-control" id="rut" placeholder="Ingrese su RUT" required>
+                        <input type="text" class="form-control" id="rut" name="rut" placeholder="Ingrese su RUT" required>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary">Generar</button>
                     </div>
                 </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary">Generar</button>
             </div>
         </div>
     </div>
