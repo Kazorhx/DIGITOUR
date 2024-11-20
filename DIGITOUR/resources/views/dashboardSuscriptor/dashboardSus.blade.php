@@ -5,8 +5,140 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Emprendimiento</title>
     <style>
-        /* Tu estilo CSS aquí */
-        /* Sin cambios respecto al anterior */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #1e2936;
+            color: white;
+            min-height: 100vh;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            background-color: #1a232e;
+            padding: 2rem;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .logo-circle {
+            width: 40px;
+            height: 40px;
+            background-color: #4ade80;
+            border-radius: 50%;
+        }
+
+        .navbar {
+            margin-top: 2rem;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            gap: 1rem;
+            color: #a0aec0;
+        }
+
+        .nav-item:hover {
+            background-color: #2a3441;
+            color: white;
+        }
+
+        .nav-item.active {
+            background-color: #2a3441;
+            color: white;
+        }
+
+        .main-content {
+            padding: 2rem;
+        }
+
+        .content-form {
+            background-color: #2a3441;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+        }
+
+        .form-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .btn-green {
+            background-color: #4ade80;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-green:hover {
+            background-color: #3ec46d;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #a0aec0;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #4a5568;
+            background-color: #1e2936;
+            border-radius: 6px;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #4ade80;
+        }
+
+        .social-inputs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        #vouchers-section {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -36,7 +168,7 @@
                 <div class="form-header">
                     <h2>Información del Emprendimiento</h2>
                 </div>
-                <form method="POST" action="{{ route('emprendimiento.update') }}">
+                <form method="POST" action="{{ route('profiles.update') }}">
                     @csrf
                     <div class="form-group">
                         <label for="nombre">Nombre del Emprendimiento</label>
