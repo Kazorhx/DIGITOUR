@@ -31,8 +31,9 @@ public function login(Request $request)
          //Las variables de sesión son útiles para almacenar información del usuario logueado, como su nombre, correo, etc.
          //Las variables de sesión se pueden acceder desde cualquier parte de la aplicación, y se mantienen activas hasta que el usuario cierra sesión,
          // incluso si cierra el navegador o la pestaña.
-         session('user', $user);
-         session('nombreusuario', $user->nombre);
+         session()->put('user', $user);
+         //session('user', $user);
+         //session('nombreusuario', $user->nombre);
 
          // Depuración: Verificar el valor de rol_id
     \Log::info("Usuario autenticado: " . $user->nombre . ", Rol: " . $user->rol_id);

@@ -15,11 +15,11 @@ class Offer extends Model
     // Lista de atributos que se pueden asignar masivamente
     protected $fillable = [
         'descripcion',
-        'fechainicio',
-        'fechavencimiento',
-        'tiempoenfriamiento',
-        'cantidadvoucher',
-        'tipooferta_id',
+        'fecha_inicio',
+        'fecha_vencimiento',
+        'tiempo_enfriamiento',
+        'cantidad_voucher',
+        'tipo_oferta_id',
         'id_perfil' // Relación con el perfil
     ];
 

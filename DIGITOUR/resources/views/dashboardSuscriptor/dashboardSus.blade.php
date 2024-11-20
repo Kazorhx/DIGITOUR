@@ -72,20 +72,20 @@
                 <form method="POST" action="{{ route('vouchers.store') }}">
                     @csrf
                     <div class="form-group">
-                        <label for="descripcion_oferta">Descripción de la oferta</label>
-                        <textarea name="descripcion_oferta" id="descripcion_oferta" rows="3" placeholder="Ingrese el tipo de oferta Ej: Porcentaje de descuento u 2x1">{{ old('descripcion_oferta') }}</textarea>
+                        <label for="descripcion">Descripción de la oferta</label>
+                        <textarea name="descripcion" id="descripcion" rows="3" placeholder="Ingrese el tipo de oferta Ej: Porcentaje de descuento u 2x1">{{ old('descripcion_oferta') }}</textarea>
                     </div>
                     <div class="form-group">
                         <label for="fecha_inicio">Fecha de Inicio</label>
                         <input type="date" name="fecha_inicio" id="fecha_inicio" value="{{ old('fecha_inicio') }}">
-                    </div>
+                    </div> 
                     <div class="form-group">
                         <label for="fecha_vencimiento">Fecha de Vencimiento</label>
                         <input type="date" name="fecha_vencimiento" id="fecha_vencimiento" value="{{ old('fecha_vencimiento') }}">
                     </div>
                     <div class="form-group">
                         <label for="cantidad_vouchers">Cantidad de Vouchers</label>
-                        <input type="number" name="cantidad_vouchers" id="cantidad_vouchers" min="1" placeholder="Ingrese la cantidad de vouchers disponibles" value="{{ old('cantidad_vouchers') }}">
+                        <input type="number" name="cantidad_voucher" id="cantidad_voucher" min="1" placeholder="Ingrese la cantidad de vouchers disponibles" value="{{ old('cantidad_vouchers') }}">
                     </div>
                     <button type="submit" class="btn-green">Guardar oferta</button>
                 </form>

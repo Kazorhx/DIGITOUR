@@ -78,4 +78,8 @@ Route::put('/usuarios/{id}', [UserController::class, 'update'])->name('usuarios.
 
 //Route::put('/profiles/{user}', [ProfileController::class, 'update'])->name('profiles.update');
 
-Route::put('/profiles', [ProfileController::class, 'update'])->name('profiles.update');
+Route::put('/profiles/update', [ProfileController::class, 'update'])->name('profiles.update');
+
+Route::post('/vouchers/store', [VoucherController::class, 'store'])->name('vouchers.store');
+
+Route::post('/offers/store', [OfferController::class, 'store'])->name('offers.store');

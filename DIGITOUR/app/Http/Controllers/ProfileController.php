@@ -32,29 +32,35 @@ public function artesanias()
 }
 
 public function update(Request $request)
-{
-    dd(session('user'));
-    // Validar los datos del formulario
-    $validated = $request->validate([
-        'nombre' => 'required|string|max:255',
-        'descripcion' => 'nullable|string',
-        'redes_sociales' => 'nullable|string|max:255',
-        'datos_contacto' => 'nullable|string|max:255',
-        'url_geolocalizacion' => 'nullable|string|max:255',
-    ]);
+    {
+        // Validar los datos del formulario
+        $validated = $request->validate([
+            'nombre' => 'required|string|max:255',
+            'descripcion' => 'nullable|string',
+            'redes_sociales' => 'nullable|string|max:255',
+            'datos_contacto' => 'nullable|string|max:255',
+            'url_geolocalizacion' => 'nullable|string|max:255',
+        ]);
 
-    // Buscar el perfil del usuario autenticado
-    $profile = Profile::firstOrCreate(
-        ['usuario_id' => auth()->id()],
-        [] // Si no existe, lo crea con los valores por defecto (puedes añadir más campos si lo deseas)
-    );
+        // Obtener el ID del usuario desde la sesión (si no usas `auth`)
+        $user = session()->get('user');
+        if (!$user) {
+            return redirect()->back()->withErrors(['error' => 'Usuario no autenticado.']);
+        }
 
-    // Actualizar los campos del perfil
-    $profile->update($validated);
+        // Buscar o crear el perfil asociado al usuario
+        $profile = Profile::firstOrCreate(
+            ['usuario_id' => $user['id']], // Cambia a `user_id` si así se llama tu campo en la tabla
+            ['nombre' => ''] // Valores predeterminados si el perfil no existe
+        );
 
-    // Redirigir con mensaje de éxito
-    return redirect()->back()->with('success', 'Perfil actualizado correctamente.');
-}
+        // Actualizar los datos del perfil
+        $profile->update($validated);
+
+        // Redirigir con un mensaje de éxito
+        return redirect()->back()->with('success', 'Perfil actualizado correctamente.');
+    }
+
     public function index()
     {
         //

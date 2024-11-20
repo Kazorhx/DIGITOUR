@@ -12,8 +12,8 @@ class Voucher extends Model
     protected $table = 'vouchers';
 
     protected $fillable = [
-        'fechaemision', 'fechavalidacion', 'url', 'rutbeneficiario',
-        'nombrebeneficiario', 'estadovoucher_id', 'oferta_id'
+        'fecha_emision', 'fecha_validacion', 'url', 'rut',
+        'nombre_cliente', 'estado_voucher_id', 'oferta_id'
     ];
 
     public $timestamps=false;
