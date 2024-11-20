@@ -140,7 +140,8 @@
             display: none;
         }
     </style>
-</head><body>
+</head>
+<body>
     <div class="container">
         <!-- Sidebar -->
         <aside class="sidebar">
@@ -162,66 +163,37 @@
 
         <!-- Main Content -->
         <main class="main-content">
-            <!-- Mensajes de éxito y error -->
-            @if (session('success'))
-                <div class="alert alert-success">
-                    {{ session('success') }}
-                </div>
-            @endif
-
-            @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
-
             <!-- Información del Emprendimiento -->
             <div class="content-form" id="emprendimiento-section">
-                <form method="POST" action="{{ route('profiles.update') }}">
-                    @csrf
-                    @method('PUT') <!-- Para indicar que se trata de una actualización -->
-                    <div class="form-header">
-                        <h2>Información del Emprendimiento</h2>
-                    </div>
-
+                <div class="form-header">
+                    <h2>Información del Emprendimiento</h2>
+                </div>
+                <form>
                     <div class="form-group">
                         <label>Nombre del Emprendimiento</label>
-                        <input type="text" name="nombre" placeholder="Ingrese el nombre de su emprendimiento" value="{{ old('nombre', auth()->user()->profile->nombre ?? '') }}">
+                        <input type="text" placeholder="Ingrese el nombre de su emprendimiento">
                     </div>
-
                     <div class="form-group">
                         <label>Descripción</label>
-                        <textarea name="descripcion" rows="4" placeholder="Describa su emprendimiento">{{ old('descripcion', auth()->user()->profile->descripcion ?? '') }}</textarea>
+                        <textarea rows="4" placeholder="Describa su emprendimiento"></textarea>
                     </div>
-
                     <div class="form-group">
                         <label>Redes Sociales</label>
                         <div class="social-inputs">
-                            <input type="text" name="redes_sociales" placeholder="Ingrese URL de red social" value="{{ old('redes_sociales', auth()->user()->profile->redes_sociales ?? '') }}">
+                            <input type="text" placeholder="Ingrese URL de red social">
                         </div>
                     </div>
-
                     <div class="form-group">
                         <label>Datos de Contacto</label>
-                        <input type="tel" name="datos_contacto" placeholder="Teléfono" value="{{ old('datos_contacto', auth()->user()->profile->datos_contacto ?? '') }}">
+                        <input type="tel" placeholder="Teléfono">
                     </div>
-
                     <div class="form-group">
                         <label>Geolocalización</label>
-                        <input type="text" name="url_geolocalizacion" placeholder="URL de Google Maps" value="{{ old('url_geolocalizacion', auth()->user()->profile->url_geolocalizacion ?? '') }}">
+                        <input type="text" placeholder="URL de Google Maps">
                     </div>
-
                     <button class="btn-green">Guardar Cambios</button>
                 </form>
             </div>
-        </main>
-    </div>
-</body>
-
 
             <!--Ofertas-->
             <div class="content-form" id="vouchers-section">
