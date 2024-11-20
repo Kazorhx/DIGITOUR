@@ -16,6 +16,13 @@
 
         body {
             background-color: #f5f5f5;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .content {
+            flex: 1;
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
@@ -44,7 +51,7 @@
             text-align: center;
             font-size: 32px;
             font-weight: bold;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
             width: 100%;
             font-style: italic;
         }
@@ -59,6 +66,10 @@
             padding: 0 20px;
         }
 
+        .cabins-section {
+            margin-bottom: 40px;
+        }
+
         .cabin-card {
             background: white;
             border-radius: 15px;
@@ -68,7 +79,7 @@
             display: flex;
             align-items: center;
             gap: 20px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
         .cabin-image-container {
@@ -113,54 +124,73 @@
             text-decoration: none;
             font-size: 14px;
             align-self: flex-start;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Pie de página */
+        .footer {
+            background: #2ea843; /* Verde */
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            width: 100%; /* Ocupa todo el ancho */
+            position: relative;
+            left: 0;
+        }
+
+        .footer p {
+            margin: 0;
+            font-size: 14px;
         }
     </style>
 </head>
 <body>
-    <section class="hero">
-        <img src="{{ asset('images/cabañapremiun.jpg') }}" alt="Hospedaje en Los Queñes">
-        <div class="hero-text">Descubre el encanto de hospedarte<br>en Los Queñes</div>
-    </section>
+    <div class="content">
+        <section class="hero">
+            <img src="{{ asset('images/cabañapremiun.jpg') }}" alt="Hospedaje en Los Queñes">
+            <div class="hero-text">Descubre el encanto de hospedarte<br>en Los Queñes</div>
+        </section>
 
-    <div class="intro-text">
-        Nuestra localidad mágica es el lugar perfecto para desconectarse, nuestras cabañas ofrecen una estancia rodeada en medio de la naturaleza. Con opciones para parejas, familias y aventureros, cada cabaña está diseñada para que disfrutes de la tranquilidad y belleza del entorno natural.
+        <div class="intro-text">
+            Nuestra localidad mágica es el lugar perfecto para desconectarse, nuestras cabañas ofrecen una estancia rodeada en medio de la naturaleza. Con opciones para parejas, familias y aventureros, cada cabaña está diseñada para que disfrutes de la tranquilidad y belleza del entorno natural.
+        </div>
+
+        <div class="cabins-section">
+            <div class="cabin-card">
+                <div class="cabin-image-container">
+                    <img src="{{ asset('images/hospedaje 2.jpeg') }}" alt="Cabañas Los Maquis">
+                </div>
+                <div class="cabin-content">
+                    <h3 class="cabin-title">Cabañas Los Maquis</h3>
+                    <p class="cabin-description">Perfectas para parejas y familias, estas cabañas combinan comfort moderno con un entorno natural único, ideal para quienes buscan actividades al aire libre y un ambiente acogedor.</p>
+                    <a href="#" class="btn-como-llegar">¿Cómo llegar?</a>
+                </div>
+            </div>
+
+            <div class="cabin-card">
+                <div class="cabin-image-container">
+                    <img src="{{ asset('images/cabañapremiun.jpg') }}" alt="Cabañas El Puente">
+                </div>
+                <div class="cabin-content">
+                    <h3 class="cabin-title">Cabañas El Puente</h3>
+                    <p class="cabin-description">Ubicadas junto al río Teno, estas cabañas ofrecen vistas panorámicas y un ambiente único, con detalles para hacer memorable tu estadía mientras disfrutas del entorno romántico.</p>
+                    <a href="#" class="btn-como-llegar">¿Cómo llegar?</a>
+                </div>
+            </div>
+
+            <div class="cabin-card">
+                <div class="cabin-image-container">
+                    <img src="{{ asset('images/hospedaje1.jpeg') }}" alt="Cabañas El Roble">
+                </div>
+                <div class="cabin-content">
+                    <h3 class="cabin-title">Cabañas El Roble</h3>
+                    <p class="cabin-description">Rodeadas de un impresionante paisaje de bosques, estas cabañas ofrecen una experiencia sencilla en plena naturaleza, perfectas para desconectarse y replicar las actividades.</p>
+                    <a href="#" class="btn-como-llegar">¿Cómo llegar?</a>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="cabins-section">
-        <div class="cabin-card">
-            <div class="cabin-image-container">
-                <img src="{{ asset('images/hospedaje 2.jpeg') }}" alt="Cabañas Los Maquis">
-            </div>
-            <div class="cabin-content">
-                <h3 class="cabin-title">Cabañas Los Maquis</h3>
-                <p class="cabin-description">Perfectas para parejas y familias, estas cabañas combinan comfort moderno con un entorno natural único, ideal para quienes buscan actividades al aire libre y un ambiente acogedor.</p>
-                <a href="#" class="btn-como-llegar">¿Cómo llegar?</a>
-            </div>
-        </div>
-
-        <div class="cabin-card">
-            <div class="cabin-image-container">
-                <img src="{{ asset('images/cabañapremiun.jpg') }}" alt="Cabañas El Puente">
-            </div>
-            <div class="cabin-content">
-                <h3 class="cabin-title">Cabañas El Puente</h3>
-                <p class="cabin-description">Ubicadas junto al río Teno, estas cabañas ofrecen vistas panorámicas y un ambiente único, con detalles para hacer memorable tu estadía mientras disfrutas del entorno romántico.</p>
-                <a href="#" class="btn-como-llegar">¿Cómo llegar?</a>
-            </div>
-        </div>
-
-        <div class="cabin-card">
-            <div class="cabin-image-container">
-                <img src="{{ asset('images/hospedaje1.jpeg') }}" alt="Cabañas El Roble">
-            </div>
-            <div class="cabin-content">
-                <h3 class="cabin-title">Cabañas El Roble</h3>
-                <p class="cabin-description">Rodeadas de un impresionante paisaje de bosques, estas cabañas ofrecen una experiencia sencilla en plena naturaleza, perfectas para desconectarse y replicar las actividades.</p>
-                <a href="#" class="btn-como-llegar">¿Cómo llegar?</a>
-            </div>
-        </div>
-    </div>
 </body>
 </html>
 @endsection

@@ -15,7 +15,16 @@
         }
 
         body {
-         background-color: white;
+            background-color: white;
+            margin: 0 auto;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Asegura que el contenido mínimo cubra toda la ventana */
+        }
+
+        .content {
+            flex: 1; /* Permite que el contenido principal ocupe el espacio disponible */
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
@@ -114,63 +123,79 @@
             font-size: 14px;
             align-self: flex-start;
             box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-
         }
 
+        /* Pie de página */
+        .footer {
+            background: #2ea843; /* Color verde */
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            width: 100%; /* Asegura que abarque todo el ancho */
+            position: relative; /* Asegura que no esté dentro del flujo limitado */
+            left: 0;
+        }
+
+        .footer p {
+            margin: 0;
+            font-size: 14px;
+        }
     </style>
 </head>
 <body>
-    <section class="hero">
-        <img src="{{ asset('images/artesania1349.png') }}" alt="Artesanías en Los Queñes">
-        <div class="hero-text">Descubre el arte local<br>en Los Queñes</div>
-    </section>
+    <div class="content">
+        <section class="hero">
+            <img src="{{ asset('images/artesania1349.png') }}" alt="Artesanías en Los Queñes">
+            <div class="hero-text">Descubre el arte local<br>en Los Queñes</div>
+        </section>
 
-    <div class="intro-text">
-        En Los Queñes, nuestros artesanos mantienen vivas las tradiciones ancestrales a través de sus creaciones únicas. Cada pieza cuenta una historia, transmitiendo la rica cultura de nuestra región mediante técnicas heredadas de generación en generación. Descubre la magia de nuestras artesanías locales y llévate un pedacito de nuestra cultura.
-    </div>
-
-    <div class="artisans-section">
-        <div class="artisan-card">
-            <div class="artisan-image-container">
-                <img src="{{ asset('images/artesania.jpeg') }}" alt="Telar Los Queñes">
-            </div>
-            <div class="artisan-content">
-                <h3 class="artisan-title">Telar Los Queñes</h3>
-                <p class="artisan-description">Descubre la maestría del tejido tradicional en nuestro taller de telares. Aquí podrás encontrar mantas, ponchos y tapices elaborados con lana natural y tintes orgánicos, cada pieza refleja la dedicación y el amor por mantener viva esta ancestral técnica.</p>
-                <a href="#" class="btn-como-llegar">¿Cómo llegar?</a>
-            </div>
+        <div class="intro-text">
+            En Los Queñes, nuestros artesanos mantienen vivas las tradiciones ancestrales a través de sus creaciones únicas. Cada pieza cuenta una historia, transmitiendo la rica cultura de nuestra región mediante técnicas heredadas de generación en generación. Descubre la magia de nuestras artesanías locales y llévate un pedacito de nuestra cultura.
         </div>
 
-        <div class="artisan-card">
-            <div class="artisan-image-container">
-                <img src="{{ asset('images/artesania3.jpeg') }}" alt="Alfarería Nativa">
+        <div class="artisans-section">
+            <div class="artisan-card">
+                <div class="artisan-image-container">
+                    <img src="{{ asset('images/artesania.jpeg') }}" alt="Telar Los Queñes">
+                </div>
+                <div class="artisan-content">
+                    <h3 class="artisan-title">Telar Los Queñes</h3>
+                    <p class="artisan-description">Descubre la maestría del tejido tradicional en nuestro taller de telares. Aquí podrás encontrar mantas, ponchos y tapices elaborados con lana natural y tintes orgánicos, cada pieza refleja la dedicación y el amor por mantener viva esta ancestral técnica.</p>
+                    <a href="#" class="btn-como-llegar">¿Cómo llegar?</a>
+                </div>
             </div>
-            <div class="artisan-content">
-                <h3 class="artisan-title">Alfarería Nativa</h3>
-                <p class="artisan-description">En nuestro taller de cerámica, cada pieza es moldeada a mano utilizando técnicas tradicionales. Encuentra vasijas, platos y decoraciones únicas que combinan la estética ancestral con toques contemporáneos, creando piezas perfectas para tu hogar.</p>
-                <a href="#" class="btn-como-llegar">¿Cómo llegar?</a>
-            </div>
-        </div>
 
-        <div class="artisan-card">
-            <div class="artisan-image-container">
-                <img src="{{ asset('images/artesania5.jpg') }}" alt="Tallados en Madera">
+            <div class="artisan-card">
+                <div class="artisan-image-container">
+                    <img src="{{ asset('images/artesania3.jpeg') }}" alt="Alfarería Nativa">
+                </div>
+                <div class="artisan-content">
+                    <h3 class="artisan-title">Alfarería Nativa</h3>
+                    <p class="artisan-description">En nuestro taller de cerámica, cada pieza es moldeada a mano utilizando técnicas tradicionales. Encuentra vasijas, platos y decoraciones únicas que combinan la estética ancestral con toques contemporáneos, creando piezas perfectas para tu hogar.</p>
+                    <a href="#" class="btn-como-llegar">¿Cómo llegar?</a>
+                </div>
             </div>
-            <div class="artisan-content">
-                <h3 class="artisan-title">Tallados en Madera</h3>
-                <p class="artisan-description">Nuestros maestros artesanos transforman la madera nativa en verdaderas obras de arte. Desde pequeñas figuras decorativas hasta muebles únicos, cada pieza refleja la belleza natural de la madera local y la habilidad de nuestros talladores.</p>
-                <a href="#" class="btn-como-llegar">¿Cómo llegar?</a>
-            </div>
-        </div>
 
-        <div class="artisan-card">
-            <div class="artisan-image-container">
-                <img src="{{ asset('images/artesania4.jpg') }}" alt="Joyería Artesanal">
+            <div class="artisan-card">
+                <div class="artisan-image-container">
+                    <img src="{{ asset('images/artesania5.jpg') }}" alt="Tallados en Madera">
+                </div>
+                <div class="artisan-content">
+                    <h3 class="artisan-title">Tallados en Madera</h3>
+                    <p class="artisan-description">Nuestros maestros artesanos transforman la madera nativa en verdaderas obras de arte. Desde pequeñas figuras decorativas hasta muebles únicos, cada pieza refleja la belleza natural de la madera local y la habilidad de nuestros talladores.</p>
+                    <a href="#" class="btn-como-llegar">¿Cómo llegar?</a>
+                </div>
             </div>
-            <div class="artisan-content">
-                <h3 class="artisan-title">Joyería Artesanal</h3>
-                <p class="artisan-description">Descubre nuestra colección de joyas artesanales, donde cada pieza es creada con materiales locales y técnicas tradicionales. Collares, pulseras y aretes que combinan la belleza de las piedras naturales con diseños únicos inspirados en nuestra cultura.</p>
-                <a href="#" class="btn-como-llegar">¿Cómo llegar?</a>
+
+            <div class="artisan-card">
+                <div class="artisan-image-container">
+                    <img src="{{ asset('images/artesania4.jpg') }}" alt="Joyería Artesanal">
+                </div>
+                <div class="artisan-content">
+                    <h3 class="artisan-title">Joyería Artesanal</h3>
+                    <p class="artisan-description">Descubre nuestra colección de joyas artesanales, donde cada pieza es creada con materiales locales y técnicas tradicionales. Collares, pulseras y aretes que combinan la belleza de las piedras naturales con diseños únicos inspirados en nuestra cultura.</p>
+                    <a href="#" class="btn-como-llegar">¿Cómo llegar?</a>
+                </div>
             </div>
         </div>
     </div>

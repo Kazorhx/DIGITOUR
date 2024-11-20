@@ -1,38 +1,174 @@
-@extends('templateProfile')
+@extends('templateViews')
 @section('contenido')
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfil de usuario</title>
+    <title>Perfil de Usuario</title>
     <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <style>
+        body {
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .container {
+            flex: 1;
+        }
+
+        /* Contenedor principal */
+        .main-container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+
+        /* Carousel */
+        .carousel-container img {
+            height: 300px;
+            object-fit: cover;
+        }
+
+        /* Información del restaurante */
+        .restaurant-info h2 {
+            color: #2ea843;
+            font-weight: bold;
+        }
+
+        .restaurant-info p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Productos destacados */
+        .productos-destacados h3 {
+            color: #2ea843;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .product-card {
+            text-align: center;
+            background: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .product-card h5 {
+            color: #333;
+        }
+
+        /* Ofertas */
+        .ofertas-section h3 {
+            color: #2ea843;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .offer-card {
+            text-align: center;
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .offer-card img {
+            width: 100%;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .offer-card p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .btn-voucher {
+            background-color: #2ea843;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 14px;
+            margin-top: 10px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-voucher:hover {
+            background-color: #239336;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #4DC0B5;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            width: 100vw;
+            margin-top: auto;
+        }
+
+        .footer p {
+            margin: 0;
+            font-size: 14px;
+        }
+
+        /* Modal */
+        .modal-content {
+            border-radius: 10px;
+        }
+
+        .modal-header {
+            background-color: #2ea843;
+            color: white;
+        }
+    </style>
 </head>
 <body>
-<!-- Carousel -->
-<div class="carousel-container mb-5">
-    <div id="carousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="{{ asset('images/publicidad 2.jpg') }}" class="d-block w-100" alt="plato1">
+<div class="container main-container">
+    <!-- Carousel -->
+    <div class="carousel-container mb-5">
+        <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="{{ asset('images/publicidad.jpg') }}" class="d-block w-100" alt="Publicidad 1">
+                </div>
+                <div class="carousel-item">
+                    <img src="{{ asset('images/publicidad3.jpg') }}" class="d-block w-100" alt="Publicidad 2">
+                </div>
+                <div class="carousel-item">
+                    <img src="{{ asset('images/publicidad 2.jpg') }}" class="d-block w-100" alt="Publicidad 3">
+                </div>
             </div>
-            <div class="carousel-item">
-                <img src="{{ asset('images/publicidad3.jpg') }}" class="d-block w-100" alt="plato2">
-            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Anterior</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Siguiente</span>
-        </button>
     </div>
-</div>
 
-<div class="container custom-card">
     <!-- Información del restaurante -->
     <div class="restaurant-info mb-4">
         <div class="row align-items-center">
@@ -42,7 +178,7 @@
             <div class="col-md-8">
                 <h2>Restaurante Doña Juanita</h2>
                 <p>
-                    Restaurante Doña Juanita es un acogedor establecimiento ubicado en la comuna de Las Higueras, conocido por ofrecer auténtica comida tradicional chilena. Nos especializamos en la preparación de platos tradicionales, utilizando ingredientes frescos y locales para garantizar el mejor sabor en cada uno de nuestros platos caseros.
+                    Restaurante Doña Juanita es un acogedor establecimiento ubicado en la comuna de Los Queñes.
                 </p>
             </div>
         </div>
@@ -50,68 +186,82 @@
 
     <!-- Productos destacados -->
     <section class="productos-destacados mt-4">
-        <h3 class="text-center mb-4">Productos destacados</h3>
+        <h3>Productos destacados</h3>
         <div class="row">
-         <div class="restaurant-info mb-4">
-        <div class="row align-items-center">
             <div class="col-md-4">
-
-                <div class="product-card text-center">
-                    <img src="{{ asset('images/comida2.jpg') }}" alt="Producto 1" class="img-fluid">
-                    <h5>Plato 1</h5>
+                <div class="product-card">
+                    <img src="{{ asset('images/pizza.jpeg') }}" alt="Producto 1">
+                    <h5>Producto 1</h5>
                 </div>
             </div>
-            <div class="col-md-4 mb-4">
-                <div class="product-card text-center">
-                    <img src="{{ asset('images/comida2.jpg') }}" alt="Producto 2" class="img-fluid">
-                    <h5>Plato 2</h5>
+            <div class="col-md-4">
+                <div class="product-card">
+                    <img src="{{ asset('images/comida2.jpg') }}" alt="Producto 2">
+                    <h5>Producto 2</h5>
                 </div>
             </div>
-            <div class="col-md-4 mb-4">
-                <div class="product-card text-center">
-                    <img src="{{ asset('images/comida2.jpg') }}" alt="Producto 3" class="img-fluid">
-                    <h5>Plato 3</h5>
+            <div class="col-md-4">
+                <div class="product-card">
+                    <img src="{{ asset('images/hambuergesa.webp') }}" alt="Producto 3">
+                    <h5>Producto 3</h5>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Sección de contacto y redes sociales -->
-    <div class="contact-section text-center mt-5">
-        <h4>Contáctanos en:</h4>
-        <div class="contact-links d-flex justify-content-center mb-4">
-            <a href="#" class="social-link me-3"><i class="fab fa-facebook"></i></a>
-            <a href="#" class="social-link me-3"><i class="fab fa-instagram"></i></a>
-            <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
-        </div>
-
-        <!-- Código QR -->
-        <div class="qr-code">
-            <img src="{{ asset('images/qr.png') }}" alt="Código QR" class="img-fluid">
-        </div>
-
-        <!-- Botón Cómo llegar -->
-        <div class="mt-4">
-            <p class="d-inline-flex gap-1">
-                <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                   ¿Como llegar?
-                </a>
-            </p>
-            <div class="collapse" id="collapseExample">
-                <div class="card card-body">
-                    <div class="map-container">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6536.521803957588!2d-70.82088155709208!3d-35.00017354125858!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9664e09cf6c88ebb%3A0xa7ca62f8a7f34fda!2sLos%20Quenes%2C%20Romeral%2C%20Maule!5e0!3m2!1ses!2scl!4v1730002552628!5m2!1ses!2scl"
-                                width="900"
-                                height="450"
-                                style="border:0;"
-                                allowfullscreen=""
-                                loading="lazy"
-                                referrerpolicy="no-referrer-when-downgrade">
-                        </iframe>
-                    </div>
+    <!-- Ofertas -->
+    <section class="ofertas-section mt-4">
+        <h3>Ofertas</h3>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="offer-card">
+                    <img src="{{ asset('images/offer1.jpg') }}" alt="Oferta 1">
+                    <p>10% de descuento en almuerzos.</p>
+                    <button class="btn-voucher" data-bs-toggle="modal" data-bs-target="#voucherModal">Generar Voucher</button>
                 </div>
             </div>
+            <div class="col-md-4">
+                <div class="offer-card">
+                    <img src="{{ asset('images/offer2.jpg') }}" alt="Oferta 2">
+                    <p>Happy Hour de 6 PM a 8 PM.</p>
+                    <button class="btn-voucher" data-bs-toggle="modal" data-bs-target="#voucherModal">Generar Voucher</button>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="offer-card">
+                    <img src="{{ asset('images/offer3.jpg') }}" alt="Oferta 3">
+                    <p>2x1 en postres.</p>
+                    <button class="btn-voucher" data-bs-toggle="modal" data-bs-target="#voucherModal">Generar Voucher</button>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
 
+<!-- Modal -->
+<div class="modal fade" id="voucherModal" tabindex="-1" aria-labelledby="voucherModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="voucherModalLabel">Generar Voucher</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="nombre" placeholder="Ingrese su nombre" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="rut" class="form-label">RUT</label>
+                        <input type="text" class="form-control" id="rut" placeholder="Ingrese su RUT" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary">Generar</button>
+            </div>
         </div>
     </div>
 </div>
