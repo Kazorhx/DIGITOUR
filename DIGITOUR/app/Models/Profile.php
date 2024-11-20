@@ -12,8 +12,8 @@ class Profile extends Model
     protected $table = 'profiles';
 
     protected $fillable = [
-        'fecha_creacion', 'tema', 'descripcion', 'redessociales',
-        'datoscontacto', 'geolocalizacion', 'categoria_id', 'usuario_id'
+        'fecha_creacion', 'tema', 'nombre', 'descripcion', 'redes_sociales',
+        'datos_contacto', 'url_geolocalizacion', 'categoria_id', 'usuario_id'
     ];
 
     public $timestamps=false;

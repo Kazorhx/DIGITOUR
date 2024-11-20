@@ -74,3 +74,8 @@ Route::patch('/dashboard/admin/{id}/toggleEstado', [UserController::class, 'togg
 Route::get('/usuarios/{id}/editar', [UserController::class, 'edit'])->name('usuarios.edit'); // Formulario de edición
 Route::delete('/usuarios/{id}', [UserController::class, 'destroy'])->name('usuarios.destroy'); // Eliminar usuario
 Route::put('/usuarios/{id}', [UserController::class, 'update'])->name('usuarios.update'); // Actualizar usuario
+
+
+//Route::put('/profiles/{user}', [ProfileController::class, 'update'])->name('profiles.update');
+
+Route::put('/profiles', [ProfileController::class, 'update'])->name('profiles.update');
