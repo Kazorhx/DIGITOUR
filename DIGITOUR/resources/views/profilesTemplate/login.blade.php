@@ -20,7 +20,7 @@
             </div>
             <div class="recordar-contraseña">
                 <label><input type="checkbox"> Recuerdame</label>
-                <a href="#">¿Olvidaste tu contraseña?</a>
+                <a href="{{ route('password.recover') }}">¿Olvidaste tu contraseña?</a>
             </div>
         </div>
         <button type="submit" class="btn-login">Iniciar sesión</button>

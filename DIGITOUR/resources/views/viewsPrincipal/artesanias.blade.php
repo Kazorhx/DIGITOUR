@@ -15,7 +15,7 @@
         }
 
         body {
-            background-color: #f5f5f5;
+         background-color: white;
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;

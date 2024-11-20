@@ -10,6 +10,11 @@ Route::get('/', function () {
     return view('viewsPrincipal.home');
 });
 
+// Ruta para la vista principal
+Route::get('/home', function () {
+    return view('viewsPrincipal.home');
+})->name('home');
+
 Route::get('/dashboard-home', function () {
     return view('dashboard.home');
 })->name('dashboard.home');
@@ -19,6 +24,15 @@ Route::get('/dashboard-home', function () {
 
 // Ruta para procesar el login
 Route::post('/login', [AuthController::class, 'login'])->name('user.login');
+
+//Ruta para recuperar contraseña
+Route::get('/password/recover', function () {
+    return view('profilesTemplate.recoverPassword');
+})->name('password.recover');
+
+// Ruta para procesar el envío del formulario
+Route::post('/password/recover', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+
 
 // Ruta para ver el perfil
 Route::get('/perfile', function () {

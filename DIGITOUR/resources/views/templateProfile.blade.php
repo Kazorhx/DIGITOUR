@@ -20,6 +20,19 @@
         .container {
             flex: 1;
         }
+
+.footer {
+    background: #4DC0B5;
+    color: white;
+    padding: 40px 20px;
+    margin-top: 40px;
+    width: 100%;
+    display: flex
+;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
         .social-section {
             background-color: #f8f9fa;
             padding: 10px 0;

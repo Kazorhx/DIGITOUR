@@ -23,10 +23,27 @@
         .header {
             padding: 20px;
             background-color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .logo {
             max-width: 100px;
+        }
+
+        .btn-back {
+            background: #2ea843;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-back:hover {
+            background-color: #239336;
         }
 
         /* Sección hero */
@@ -61,7 +78,7 @@
             bottom: 20px;
             left: 20px;
             color: white;
-            font-size: 24px;
+            font-size: 20px;
             text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
         }
 
@@ -131,33 +148,6 @@
 
         .btn-details:hover {
             background-color: #239336;
-        }
-
- 
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 10px;
-        }
-
-        .footer-links a {
-            color: white;
-            text-decoration: none;
-            font-size: 14px;
-        }
-
-        .footer-links a:hover {
-            text-decoration: underline;
         }
     </style>
 </head>
