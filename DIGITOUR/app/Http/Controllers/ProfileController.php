@@ -42,7 +42,7 @@ public function update(Request $request)
             'url_geolocalizacion' => 'nullable|string|max:255',
         ]);
 
-        // Obtener el ID del usuario desde la sesión (si no usas `auth`)
+        // Obtener el ID del usuario desde la sesión
         $user = session()->get('user');
         if (!$user) {
             return redirect()->back()->withErrors(['error' => 'Usuario no autenticado.']);
@@ -50,8 +50,8 @@ public function update(Request $request)
 
         // Buscar o crear el perfil asociado al usuario
         $profile = Profile::firstOrCreate(
-            ['usuario_id' => $user['id']], // Cambia a `user_id` si así se llama tu campo en la tabla
-            ['nombre' => ''] // Valores predeterminados si el perfil no existe
+            ['usuario_id' => $user['id']],
+            ['nombre' => '']
         );
 
         // Actualizar los datos del perfil
@@ -63,7 +63,8 @@ public function update(Request $request)
 
     public function index()
     {
-        //
+        $profiles = Profile::all(); // Obtiene todos los perfiles
+        return view('profiles.index', compact('profiles')); 
     }
 
     /**

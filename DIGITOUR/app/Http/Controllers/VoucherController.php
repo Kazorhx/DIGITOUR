@@ -27,31 +27,43 @@ class VoucherController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        // Validar los datos del formulario
-        $validated = $request->validate([
-            'descripcion' => 'required|string|max:255',
-            'fecha_inicio' => 'required|date',
-            'fecha_vencimiento' => 'required|date|after_or_equal:fecha_inicio',
-            'cantidad_voucher' => 'required|integer|min:1',
-        ]);
+{
+    $validated = $request->validate([
+        'rut' => 'required|string|max:50',
+        'nombre' => 'required|string|max:255',
+        'oferta_id' => 'required|exists:offers,id',
+    ]);
 
-        // Generar los datos para crear el voucher
-        for ($i = 0; $i < $validated['cantidad_voucher']; $i++) {
-            Voucher::create([
-                'id' => uniqid(), // Generar un ID único para cada voucher
-                'fecha_emision' => now(),
-                'fecha_validacion' => null,
-                'url' => route('vouchers.show', ['id' => uniqid()]), // Ruta de ejemplo
-                'rut' => 'DEFAULT_RUT', // Suplente o datos reales según el flujo
-                'nombre_cliente' => 'DEFAULT_CLIENTE', // Puede venir de otro formulario
-                'oferta_id' => 1, // ID de oferta, ajusta según tu lógica
-                'estado_voucher_id' => 1, // Estado inicial del voucher
-            ]);
-        }
+    $voucher = Voucher::create([
+        'rut' => $validated['rut'],
+        'nombre_cliente' => $validated['nombre'],
+        'oferta_id' => $validated['oferta_id'],
+        'fecha_emision' => now(),
+        'url' => '',
+    ]);
 
-        return redirect()->back()->with('success', 'Vouchers generados correctamente.');
-    }
+    // Generar la URL del QR
+    $qrUrl = route('voucher.qr', ['id' => $voucher->id]);
+    $voucher->update(['url' => $qrUrl]);
+
+    return redirect()->route('voucher.qr', ['id' => $voucher->id])
+        ->with('success', 'Voucher generado exitosamente.');
+}
+
+// Método para mostrar el QR
+public function showQr($id)
+{
+    $voucher = Voucher::findOrFail($id);
+    return view('voucher.qr', compact('voucher')); 
+}
+
+// Método para descargar el QR como PDF
+public function downloadPdf($id)
+{
+    $voucher = Voucher::findOrFail($id);
+    $pdf = \PDF::loadView('voucher.pdf', compact('voucher'));
+    return $pdf->download("voucher-{$voucher->id}.pdf");
+}
 
 
     /**

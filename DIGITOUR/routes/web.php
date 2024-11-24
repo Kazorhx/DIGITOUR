@@ -85,3 +85,11 @@ Route::put('/profiles/update', [ProfileController::class, 'update'])->name('prof
 Route::post('/vouchers/store', [VoucherController::class, 'store'])->name('vouchers.store');
 
 Route::post('/offers/store', [OfferController::class, 'store'])->name('offers.store');
+
+// Ruta para mostrar las ofertas de un perfil
+Route::get('/perfil/{id}', [OfferController::class, 'showByProfile'])->name('perfil.ofertas');
+
+// Rutas para generar y mostrar vouchers
+Route::post('/voucher/store', [VoucherController::class, 'store'])->name('voucher.store');
+Route::get('/voucher/{id}/qr', [VoucherController::class, 'showQr'])->name('voucher.qr');
+Route::get('/voucher/{id}/download', [VoucherController::class, 'downloadPdf'])->name('voucher.download');

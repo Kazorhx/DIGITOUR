@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Offer;
+use App\Models\Profile;
 use Illuminate\Http\Request;
 
 class OfferController extends Controller
@@ -10,22 +11,21 @@ class OfferController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        //
-    }
+public function index()
+{
+    //
+}
+public function showByProfile($id)
+{
+    $profile = Profile::with('offers')->findOrFail($id);
+    return view('perfil.ofertas', compact('profile'));
+}
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+public function create()
+{
+
+}
     public function store(Request $request)
     {
         // Validar los datos del formulario
@@ -34,25 +34,32 @@ class OfferController extends Controller
             'fecha_inicio' => 'required|date',
             'fecha_vencimiento' => 'required|date|after_or_equal:fecha_inicio',
             'cantidad_voucher' => 'required|integer|min:1',
-            'tiempo_enfriamiento' => 'nullable|integer|min:0',
-            'tipo_oferta_id' => 'required|exists:offer_types,id',
         ]);
 
-        // Obtener el ID del usuario desde la sesión
-        $userId = session()->get('user')->id;
-
         // Obtener el perfil asociado al usuario
-        $profile = Profile::where('user_id', $userId)->first();
-
-        if (!$profile) {
-            return redirect()->back()->withErrors(['error' => 'No se encontró un perfil asociado al usuario.']);
+        $user = session()->get('user');
+        if (!$user) {
+            return redirect()->back()->withErrors(['error' => 'Usuario no autenticado.']);
         }
 
-        // Crear la oferta asociada al perfil
-        Offer::create(array_merge($validated, ['id_perfil' => $profile->id]));
+        $profile = Profile::where('usuario_id', $user['id'])->first();
+        if (!$profile) {
+            return redirect()->back()->withErrors(['error' => 'Perfil no encontrado para el usuario.']);
+        }
 
-        return redirect()->back()->with('success', 'Oferta creada exitosamente.');
+        // Crear la oferta
+        Offer::create([
+            'descripcion' => $validated['descripcion'],
+            'fecha_inicio' => $validated['fecha_inicio'],
+            'fecha_vencimiento' => $validated['fecha_vencimiento'],
+            'cantidad_voucher' => $validated['cantidad_voucher'],
+            'id_perfil' => $profile->id,
+        ]);
+
+       return redirect()->to(url()->previous() . '#vouchers-section')->with('success', 'Oferta creada exitosamente.');
     }
+
+
     /**
      * Display the specified resource.
      */

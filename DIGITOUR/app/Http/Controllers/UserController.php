@@ -41,13 +41,13 @@ public function registro(Request $request)
 
         // Crear el perfil asociado al usuario
         $user->profile()->create([
-           'fecha_creacion' => now(), // Obligatorio, siempre con un valor válido.
-           'tema' => $request->tema ?? null, // Puede ser null.
-           'nombre' => $request->nombre ?? '', // Obligatorio, pero puede ser vacío.
-           'descripcion' => $request->descripcion ?? '', // Obligatorio, pero puede ser vacío.
-           'redes_sociales' => $request->redes_sociales ?? '', // Obligatorio, pero puede ser vacío.
-           'datos_contacto' => $request->datos_contacto ?? '', // Obligatorio, pero puede ser vacío.
-           'url_geolocalizacion' => $request->url_geolocalizacion ?? '', // Obligatorio, pero puede ser vacío.
+           'fecha_creacion' => now(), 
+           'tema' => $request->tema ?? null,
+           'nombre' => $request->nombre ?? '',
+           'descripcion' => $request->descripcion ?? '',
+           'redes_sociales' => $request->redes_sociales ?? '',
+           'datos_contacto' => $request->datos_contacto ?? '',
+           'url_geolocalizacion' => $request->url_geolocalizacion ?? '',
            'categoria_id' => $request->categoria_id,
 ]);
 

@@ -198,10 +198,15 @@
 
             <!--Ofertas-->
             <div class="content-form" id="vouchers-section">
+            @if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
                 <div class="form-header">
                     <h2>Gestión de Ofertas</h2>
                 </div>
-                <form method="POST" action="{{ route('vouchers.store') }}">
+                <form method="POST" action="{{ route('offers.store') }}">
                     @csrf
                     <div class="form-group">
                         <label for="descripcion">Descripción de la oferta</label>
