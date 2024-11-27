@@ -101,14 +101,16 @@ public function update(Request $request)
     /**
      * Display the specified resource.
      */
-    public function show(Profile $profile)
+    public function show($id)
     {
-        //agarra el id y consulta a la bd por la info de ese perfil
-        //hacer consultas a tablas relacionadas para más info
-          
-        //retorna la vista de perfil pasándole un objeto con la info (compact)
+      // Consulta el perfil del usuario por su ID
+        $profile = Profile::findOrFail($id);
 
+        // Consulta las ofertas relacionadas al perfil
+        $offers = Offer::where('profile_id', $id)->get();
 
+        // Retorna la vista y envía los datos del perfil y sus ofertas
+        return view('profile.show', compact('profile', 'offers'));
     }
 
     /**

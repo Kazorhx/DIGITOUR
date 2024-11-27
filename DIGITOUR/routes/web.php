@@ -93,3 +93,5 @@ Route::get('/perfil/{id}', [OfferController::class, 'showByProfile'])->name('per
 Route::post('/voucher/store', [VoucherController::class, 'store'])->name('voucher.store');
 Route::get('/voucher/{id}/qr', [VoucherController::class, 'showQr'])->name('voucher.qr');
 Route::get('/voucher/{id}/download', [VoucherController::class, 'downloadPdf'])->name('voucher.download');
+
+Route::get('/profile/{id}', [ProfileController::class, 'show'])->name('profile.show');
