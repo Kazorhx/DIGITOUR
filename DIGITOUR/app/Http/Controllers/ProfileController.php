@@ -79,9 +79,24 @@ public function update(Request $request)
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
+
+{
+    $validated = $request->validate([
+        'nombre' => 'required|string|max:255',
+        'descripcion' => 'nullable|string',
+        'redes_sociales' => 'nullable|string|max:255',
+        'datos_contacto' => 'nullable|string|max:255',
+        'url_geolocalizacion' => 'nullable|string|max:255',
+        'usuario_id' => 'required|integer',
+    ]);
+
+    Profile::create($validated);
+
+    return redirect()->route('profiles.index')->with('success', 'Perfil creado exitosamente.');
+}
+
         //
-    }
+
 
     /**
      * Display the specified resource.

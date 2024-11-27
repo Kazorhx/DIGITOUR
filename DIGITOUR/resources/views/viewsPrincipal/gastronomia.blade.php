@@ -183,43 +183,16 @@
   <div class="intro-text">
     En Los Queñes, cada plato cuenta una historia. Desde las empanadas rellenas de carne y especias locales hasta el exquisito cordero al palo, nuestros sabores reflejan la riqueza de nuestra tierra. ¡Descubre la auténtica esencia de Los Queñes en cada bocado!
 </div>
-
-    <section class="restaurants-section">
-        <div class="restaurants-container">
-            <div class="restaurant-card">
-                <img src="{{ asset('images/hambuergesa.webp') }}" alt="Hostería Los Queñes">
-                <div class="restaurant-content">
-                    <div class="restaurant-info">
-                        <h3>Hostería Los Queñes</h3>
-                        <p>Disfruta de las recetas tradicionales como el pastel de choclo y el cordero asado en un entorno acogedor.</p>
-                    </div>
-                    <a href="#" class="btn-como-llegar">¿Cómo llegar?</a>
-                </div>
-            </div>
-
-            <div class="restaurant-card">
-                <img src="{{ asset('images/pizza.jpeg') }}" alt="Oasis Pizzería">
-                <div class="restaurant-content">
-                    <div class="restaurant-info">
-                        <h3>Oasis Pizzería</h3>
-                        <p>Una fusión de tradición italiana y sabores locales, ideales para disfrutar en un ambiente único.</p>
-                    </div>
-                    <a href="#" class="btn-como-llegar">¿Cómo llegar?</a>
-                </div>
-            </div>
-
-            <div class="restaurant-card">
-                <img src="{{ asset('images/descarga.jpeg') }}" alt="Fuente de Soda El Pino">
-                <div class="restaurant-content">
-                    <div class="restaurant-info">
-                        <h3>Fuente de Soda "El Pino"</h3>
-                        <p>Auténticas hamburguesas y platos caseros en un ambiente familiar y amigable.</p>
-                    </div>
-                    <a href="#" class="btn-como-llegar">¿Cómo llegar?</a>
-                </div>
-            </div>
-        </div>
-    </section>
+<div class="cabins-section">
+        @foreach ($perfiles as $profile)
+            @include('templateCard', [
+                'image' => $profile->image ?? asset('images/default_cabin.jpg'),
+                'nombre' => $profile->nombre,
+                'descripcion' => $profile->descripcion,
+                'url_geolocalizacion' => $profile->url_geolocalizacion,
+            ])
+        @endforeach
+    </div>
 </body>
 </html>
 @endsection

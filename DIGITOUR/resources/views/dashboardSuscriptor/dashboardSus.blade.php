@@ -161,40 +161,61 @@
             </nav>
         </aside>
 
-        <!-- Main Content -->
-        <main class="main-content">
-            <!-- Información del Emprendimiento -->
-            <div class="content-form" id="emprendimiento-section">
-                <div class="form-header">
-                    <h2>Información del Emprendimiento</h2>
-                </div>
-                <form method="POST" action="{{ route('profiles.update') }}">
-                    @csrf
-                    <div class="form-group">
-                        <label for="nombre">Nombre del Emprendimiento</label>
-                        <input type="text" name="nombre" id="nombre" placeholder="Ingrese el nombre de su emprendimiento" value="{{ old('nombre') }}">
-                    </div>
-                    <div class="form-group">
-                        <label for="descripcion">Descripción</label>
-                        <textarea name="descripcion" id="descripcion" rows="4" placeholder="Describa su emprendimiento">{{ old('descripcion') }}</textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="redes_sociales">Redes Sociales</label>
-                        <div class="social-inputs">
-                            <input type="text" name="redes_sociales" id="redes_sociales" placeholder="Ingrese URL de red social" value="{{ old('redes_sociales') }}">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="datos_contacto">Datos de Contacto</label>
-                        <input type="tel" name="datos_contacto" id="datos_contacto" placeholder="Teléfono" value="{{ old('datos_contacto') }}">
-                    </div>
-                    <div class="form-group">
-                        <label for="url_geolocalizacion">Geolocalización</label>
-                        <input type="text" name="url_geolocalizacion" id="url_geolocalizacion" placeholder="URL de Google Maps" value="{{ old('url_geolocalizacion') }}">
-                    </div>
-                    <button type="submit" class="btn-green">Guardar Cambios</button>
-                </form>
+<main class="main-content">
+    <div class="content-form" id="emprendimiento-section">
+        <div class="form-header">
+            <h2>Información del Emprendimiento</h2>
+        </div>
+
+        <form method="POST" action="{{ route('profiles.update') }}" enctype="multipart/form-data">
+            @csrf
+            @method('PUT')
+
+            <div class="form-group">
+                <label for="nombre">Nombre del Emprendimiento</label>
+                <input type="text" name="nombre" id="nombre" placeholder="Ingrese el nombre de su emprendimiento" value="{{ old('nombre', $profile->nombre ?? '') }}">
             </div>
+
+            <div class="form-group">
+                <label for="descripcion">Descripción</label>
+                <textarea name="descripcion" id="descripcion" rows="4" placeholder="Describa su emprendimiento">{{ old('descripcion', $profile->descripcion ?? '') }}</textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="redes_sociales">Redes Sociales</label>
+                <div class="social-inputs">
+                    <input type="text" name="redes_sociales" id="redes_sociales" placeholder="Ingrese URL de red social" value="{{ old('redes_sociales', $profile->redes_sociales ?? '') }}">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="datos_contacto">Datos de Contacto</label>
+                <input type="tel" name="datos_contacto" id="datos_contacto" placeholder="Teléfono" value="{{ old('datos_contacto', $profile->datos_contacto ?? '') }}">
+            </div>
+
+            <div class="form-group">
+                <label for="url_geolocalizacion">Geolocalización</label>
+                <input type="text" name="url_geolocalizacion" id="url_geolocalizacion" placeholder="URL de Google Maps" value="{{ old('url_geolocalizacion', $profile->url_geolocalizacion ?? '') }}">
+            </div>
+
+            <div class="form-group">
+                <label for="imagen">Subir Imagen</label>
+                <input type="file" name="imagen" id="imagen" accept="image/*">
+            </div>
+
+            @if(isset($profile->imagen))
+                <div class="form-group">
+                    <p>Imagen:</p>
+                    <img src="{{ Storage::url($profile->imagen) }}" alt="Imagen del Emprendimiento" style="width: 150px; height: auto;">
+                </div>
+            @endif
+
+            <!-- Botón de Guardar -->
+            <button type="submit" class="btn-green">Guardar Cambios</button>
+        </form>
+    </div>
+</main>
+
 
             <!--Ofertas-->
             <div class="content-form" id="vouchers-section">

@@ -1,23 +1,24 @@
-<!-- resources/views/user_images.blade.php -->
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Imágenes del Usuario</title>
-</head>
-<body>
-    <h1>Imágenes del Usuario</h1>
+@extends('templateViews')
+
+@section('contenido')
+<div class="container">
+    <h1 class="text-center my-4">Imágenes del Usuario</h1>
 
     @if(count($userFiles) > 0)
-        @foreach($userFiles as $file)
-            <div>
-                <img src="{{ asset('storage/' . $file) }}" alt="Imagen del usuario" style="max-width: 300px; margin-bottom: 10px;">
-            </div>
-        @endforeach
+        <div class="row">
+            @foreach($userFiles as $file)
+                <div class="col-md-4 mb-4">
+                    <div class="card shadow-sm">
+                        <img src="{{ asset('storage/' . $file) }}" class="card-img-top" alt="Imagen del usuario">
+                        <div class="card-body">
+                            <p class="card-text">Imagen del usuario subida con éxito.</p>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
     @else
-        <p>No hay imágenes para este usuario.</p>
+        <p class="text-center text-muted">No hay imágenes para este usuario.</p>
     @endif
-
-</body>
-</html>
+</div>
+@endsection

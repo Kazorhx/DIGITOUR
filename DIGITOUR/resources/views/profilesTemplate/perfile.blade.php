@@ -5,229 +5,128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfil de Usuario</title>
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+    <title>{{ $profile->nombre }}</title>
     <style>
         body {
-            background-color: #f4f4f4;
+            background-color: #f5f5f5;
+            font-family: Arial, sans-serif;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
         }
 
-        .container {
-            flex: 1;
-        }
-
-        /* Contenedor principal */
-        .main-container {
-            background-color: #ffffff;
+        .content {
+            max-width: 1200px;
+            margin: 20px auto;
             padding: 20px;
+            background: #fff;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            margin-bottom: 40px;
         }
 
-        /* Carousel */
-        .carousel-container img {
-            height: 300px;
+        .hero {
+            position: relative;
+            height: 400px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+
+        .hero img {
+            width: 100%;
+            height: 100%;
             object-fit: cover;
         }
 
-        /* Información del restaurante */
-        .restaurant-info h2 {
-            color: #2ea843;
-            font-weight: bold;
+        .description {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
         }
 
-        .restaurant-info p {
+        .description img {
+            max-width: 300px;
+            border-radius: 10px;
+        }
+
+        .details {
+            flex: 1;
+        }
+
+        .details h1 {
+            color: #2ea843;
+            margin-bottom: 10px;
+        }
+
+        .details p {
             color: #666;
             line-height: 1.6;
         }
 
-        /* Productos destacados */
-        .productos-destacados h3 {
+        .offers {
+            margin-top: 30px;
+        }
+
+        .offers h2 {
             color: #2ea843;
-            text-align: center;
             margin-bottom: 20px;
         }
 
-        .product-card {
-            text-align: center;
-            background: #fff;
-            padding: 15px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .product-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 10px;
-            margin-bottom: 10px;
-        }
-
-        .product-card h5 {
-            color: #333;
-        }
-
-        /* Ofertas */
-        .ofertas-section h3 {
-            color: #2ea843;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .offer-card {
-            text-align: center;
+        .card {
             background: white;
             border-radius: 10px;
+            overflow: hidden;
             padding: 15px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
         }
 
-        .offer-card img {
-            width: 100%;
-            height: 100px;
-            object-fit: cover;
-            border-radius: 10px;
-            margin-bottom: 10px;
-        }
-
-        .offer-card p {
+        .card p {
             color: #666;
-            font-size: 14px;
-        }
-
-        .btn-voucher {
-            background-color: #2ea843;
-            color: white;
-            padding: 10px 15px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-size: 14px;
-            margin-top: 10px;
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn-voucher:hover {
-            background-color: #239336;
-        }
-
-        /* Footer */
-        .footer {
-            background-color: #4DC0B5;
-            color: white;
-            padding: 20px;
-            text-align: center;
-            width: 100vw;
-            margin-top: auto;
-        }
-
-        .footer p {
             margin: 0;
-            font-size: 14px;
         }
 
-        /* Modal */
-        .modal-content {
-            border-radius: 10px;
-        }
-
-        .modal-header {
-            background-color: #2ea843;
-            color: white;
+        .card span {
+            font-weight: bold;
+            color: #333;
         }
     </style>
 </head>
 <body>
-<div class="container main-container">
-    <!-- Carousel -->
-    <div class="carousel-container mb-5">
-        <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="{{ asset('images/publicidad.jpg') }}" class="d-block w-100" alt="Publicidad 1">
-                </div>
-                <div class="carousel-item">
-                    <img src="{{ asset('images/publicidad3.jpg') }}" class="d-block w-100" alt="Publicidad 2">
-                </div>
-                <div class="carousel-item">
-                    <img src="{{ asset('images/publicidad 2.jpg') }}" class="d-block w-100" alt="Publicidad 3">
-                </div>
+    <div class="content">
+        <!-- Imagen principal -->
+        <div class="hero">
+            <img src="{{ asset('storage/' . $profile->imagen) }}" alt="{{ $profile->nombre }}">
+        </div>
+
+        <!-- Descripción del perfil -->
+        <div class="description">
+            <img src="{{ asset('storage/' . $profile->imagen) }}" alt="Imagen de {{ $profile->nombre }}">
+            <div class="details">
+                <h1>{{ $profile->nombre }}</h1>
+                <p>{{ $profile->descripcion }}</p>
+                <p><span>Redes Sociales:</span> <a href="{{ $profile->redes_sociales }}" target="_blank">{{ $profile->redes_sociales }}</a></p>
+                <p><span>Contacto:</span> {{ $profile->datos_contacto }}</p>
+                <p><span>Geolocalización:</span> <a href="{{ $profile->url_geolocalizacion }}" target="_blank">Ver en Google Maps</a></p>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
+        </div>
+
+        <!-- Ofertas -->
+        <div class="offers">
+            <h2>Ofertas</h2>
+            @if($offers->count() > 0)
+                @foreach($offers as $offer)
+                    <div class="card">
+                        <p><span>Oferta:</span> {{ $offer->descripcion }}</p>
+                        <p><span>Válido desde:</span> {{ $offer->fecha_inicio }}</p>
+                        <p><span>Válido hasta:</span> {{ $offer->fecha_fin }}</p>
+                    </div>
+                @endforeach
+            @else
+                <p>No hay ofertas disponibles para este emprendimiento.</p>
+            @endif
         </div>
     </div>
-
-    <!-- Ofertas -->
-    <section class="ofertas-section mt-4">
-        <h3>Ofertas</h3>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="offer-card">
-                    <img src="{{ asset('images/offer1.jpg') }}" alt="Oferta 1">
-                    <p>10% de descuento en almuerzos.</p>
-                    <button class="btn-voucher" data-bs-toggle="modal" data-bs-target="#voucherModal">Generar Voucher</button>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="offer-card">
-                    <img src="{{ asset('images/offer2.jpg') }}" alt="Oferta 2">
-                    <p>Happy Hour de 6 PM a 8 PM.</p>
-                    <button class="btn-voucher" data-bs-toggle="modal" data-bs-target="#voucherModal">Generar Voucher</button>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="offer-card">
-                    <img src="{{ asset('images/offer3.jpg') }}" alt="Oferta 3">
-                    <p>2x1 en postres.</p>
-                    <button class="btn-voucher" data-bs-toggle="modal" data-bs-target="#voucherModal">Generar Voucher</button>
-                </div>
-            </div>
-        </div>
-    </section>
-</div>
-
-<!-- Modal -->
-<div class="modal fade" id="voucherModal" tabindex="-1" aria-labelledby="voucherModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="voucherModalLabel">Generar Voucher</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form id="voucherForm" action="{{ route('voucher.create') }}" method="POST">
-                    @csrf
-                    <div class="mb-3">
-                        <label for="nombre" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese su nombre" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="rut" class="form-label">RUT</label>
-                        <input type="text" class="form-control" id="rut" name="rut" placeholder="Ingrese su RUT" required>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                        <button type="submit" class="btn btn-primary">Generar</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-<script src="{{ asset('js/bootstrap.bundle.js') }}"></script>
 </body>
 </html>
 @endsection

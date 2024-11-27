@@ -198,29 +198,16 @@
             En Los Queñes, la emoción y el descanso se unen para ofrecerte experiencias inolvidables. Ya sea que busques la adrenalina del rafting o la serenidad de un spa, aquí encontrarás actividades para todos los gustos.
         </p>
 
-        <!-- Activity Card 1 -->
-        <div class="activity-card">
-            <img src="{{ asset('images/rio.jpg') }}" alt="Rafting en el Río Teno">
-            <div class="activity-content">
-                <h3>Rafting</h3>
-                <p>
-                    Sumérgete en la adrenalina del rafting en el Río Teno. Experimenta la emoción de navegar por rápidos mientras disfrutas de paisajes naturales impresionantes.
-                </p>
-                <a href="#" class="btn-details">Más Detalles</a>
-            </div>
-        </div>
-
-        <!-- Activity Card 2 -->
-        <div class="activity-card">
-            <img src="{{ asset('images/Servicios Spa.jpg') }}" alt="Spa relajante en Los Queñes">
-            <div class="activity-content">
-                <h3>Spa</h3>
-                <p>
-                    Relájate y rejuvenece en Spa Río Blanco. Disfruta de tratamientos revitalizantes y baños termales rodeados de naturaleza.
-                </p>
-                <a href="#" class="btn-details">Más Detalles</a>
-            </div>
-        </div>
+ <div class="cabins-section">
+        @foreach ($perfiles as $profile)
+            @include('templateCard', [
+                'image' => $profile->image ?? asset('images/default_cabin.jpg'),
+                'nombre' => $profile->nombre,
+                'descripcion' => $profile->descripcion,
+                'url_geolocalizacion' => $profile->url_geolocalizacion,
+            ])
+        @endforeach
+    </div>
     </section>
 </body>
 </html>

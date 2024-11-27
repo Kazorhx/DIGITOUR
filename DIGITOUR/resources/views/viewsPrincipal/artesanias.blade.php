@@ -153,52 +153,18 @@
             En Los Queñes, nuestros artesanos mantienen vivas las tradiciones ancestrales a través de sus creaciones únicas. Cada pieza cuenta una historia, transmitiendo la rica cultura de nuestra región mediante técnicas heredadas de generación en generación. Descubre la magia de nuestras artesanías locales y llévate un pedacito de nuestra cultura.
         </div>
 
-        <div class="artisans-section">
-            <div class="artisan-card">
-                <div class="artisan-image-container">
-                    <img src="{{ asset('images/artesania.jpeg') }}" alt="Telar Los Queñes">
-                </div>
-                <div class="artisan-content">
-                    <h3 class="artisan-title">Telar Los Queñes</h3>
-                    <p class="artisan-description">Descubre la maestría del tejido tradicional en nuestro taller de telares. Aquí podrás encontrar mantas, ponchos y tapices elaborados con lana natural y tintes orgánicos, cada pieza refleja la dedicación y el amor por mantener viva esta ancestral técnica.</p>
-                    <a href="#" class="btn-como-llegar">¿Cómo llegar?</a>
-                </div>
-            </div>
-
-            <div class="artisan-card">
-                <div class="artisan-image-container">
-                    <img src="{{ asset('images/artesania3.jpeg') }}" alt="Alfarería Nativa">
-                </div>
-                <div class="artisan-content">
-                    <h3 class="artisan-title">Alfarería Nativa</h3>
-                    <p class="artisan-description">En nuestro taller de cerámica, cada pieza es moldeada a mano utilizando técnicas tradicionales. Encuentra vasijas, platos y decoraciones únicas que combinan la estética ancestral con toques contemporáneos, creando piezas perfectas para tu hogar.</p>
-                    <a href="#" class="btn-como-llegar">¿Cómo llegar?</a>
-                </div>
-            </div>
-
-            <div class="artisan-card">
-                <div class="artisan-image-container">
-                    <img src="{{ asset('images/artesania5.jpg') }}" alt="Tallados en Madera">
-                </div>
-                <div class="artisan-content">
-                    <h3 class="artisan-title">Tallados en Madera</h3>
-                    <p class="artisan-description">Nuestros maestros artesanos transforman la madera nativa en verdaderas obras de arte. Desde pequeñas figuras decorativas hasta muebles únicos, cada pieza refleja la belleza natural de la madera local y la habilidad de nuestros talladores.</p>
-                    <a href="#" class="btn-como-llegar">¿Cómo llegar?</a>
-                </div>
-            </div>
-
-            <div class="artisan-card">
-                <div class="artisan-image-container">
-                    <img src="{{ asset('images/artesania4.jpg') }}" alt="Joyería Artesanal">
-                </div>
-                <div class="artisan-content">
-                    <h3 class="artisan-title">Joyería Artesanal</h3>
-                    <p class="artisan-description">Descubre nuestra colección de joyas artesanales, donde cada pieza es creada con materiales locales y técnicas tradicionales. Collares, pulseras y aretes que combinan la belleza de las piedras naturales con diseños únicos inspirados en nuestra cultura.</p>
-                    <a href="#" class="btn-como-llegar">¿Cómo llegar?</a>
-                </div>
-            </div>
-        </div>
+       <div class="cabins-section">
+        @foreach ($perfiles as $profile)
+            @include('templateCard', [
+                'image' => $profile->image ?? asset('images/artesania.jpeg'),
+                'nombre' => $profile->nombre,
+                'descripcion' => $profile->descripcion,
+                'url_geolocalizacion' => $profile->url_geolocalizacion,
+            ])
+        @endforeach
     </div>
+   </div>
+
 </body>
 </html>
 @endsection

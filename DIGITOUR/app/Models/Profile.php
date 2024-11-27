@@ -35,4 +35,15 @@ class Profile extends Model
     {
         return $this->hasMany(ProductDetail::class);
     }
+
+public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
+
+    public function offers()
+    {
+        return $this->hasMany(Offer::class);
+    }
 }
+
