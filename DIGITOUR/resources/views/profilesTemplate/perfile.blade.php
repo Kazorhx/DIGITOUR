@@ -5,14 +5,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $profile->nombre }}</title>
+    <title>Perfil - Generar Voucher</title>
     <style>
+        /* Reset y estilos base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
         body {
             background-color: #f5f5f5;
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
+            color: #333;
         }
 
         .content {
@@ -38,29 +43,14 @@
             object-fit: cover;
         }
 
-        .description {
-            display: flex;
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        .description img {
-            max-width: 300px;
-            border-radius: 10px;
-        }
-
-        .details {
-            flex: 1;
-        }
-
         .details h1 {
             color: #2ea843;
-            margin-bottom: 10px;
+            text-align: center;
         }
 
         .details p {
+            text-align: center;
             color: #666;
-            line-height: 1.6;
         }
 
         .offers {
@@ -69,26 +59,117 @@
 
         .offers h2 {
             color: #2ea843;
+            text-align: center;
             margin-bottom: 20px;
         }
 
         .card {
             background: white;
             border-radius: 10px;
-            overflow: hidden;
             padding: 15px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
         .card p {
-            color: #666;
-            margin: 0;
+            margin: 0 0 10px;
         }
 
-        .card span {
+        .btn-voucher {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background: #28a745;
+            color: white;
+            text-align: center;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-voucher:hover {
+            background-color: #218838;
+        }
+
+        /* Modal estilos */
+        #voucherModal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            width: 400px;
+        }
+
+        .modal-header {
+            font-size: 18px;
             font-weight: bold;
-            color: #333;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .modal-body {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .modal-body input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .modal-footer {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+
+        .close-btn {
+            background-color: #dc3545;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .close-btn:hover {
+            background-color: #c82333;
+        }
+
+        .btn-generate {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn-generate:hover {
+            background-color: #218838;
+        }
+
+        #qrCodeContainer img {
+            margin-top: 15px;
+            max-width: 200px;
         }
     </style>
 </head>
@@ -96,37 +177,96 @@
     <div class="content">
         <!-- Imagen principal -->
         <div class="hero">
-            <img src="{{ asset('storage/' . $profile->imagen) }}" alt="{{ $profile->nombre }}">
+            <img src="{{ asset('images/publicidad 2.jpg') }}" alt="Cabecera del perfil">
         </div>
 
-        <!-- Descripción del perfil -->
-        <div class="description">
-            <img src="{{ asset('storage/' . $profile->imagen) }}" alt="Imagen de {{ $profile->nombre }}">
-            <div class="details">
-                <h1>{{ $profile->nombre }}</h1>
-                <p>{{ $profile->descripcion }}</p>
-                <p><span>Redes Sociales:</span> <a href="{{ $profile->redes_sociales }}" target="_blank">{{ $profile->redes_sociales }}</a></p>
-                <p><span>Contacto:</span> {{ $profile->datos_contacto }}</p>
-                <p><span>Geolocalización:</span> <a href="{{ $profile->url_geolocalizacion }}" target="_blank">Ver en Google Maps</a></p>
-            </div>
+        <!-- Detalles del perfil -->
+        <div class="details">
+            <h1>{{ $profile->nombre }}</h1>
+            <p>{{ $profile->descripcion }}</p>
         </div>
 
         <!-- Ofertas -->
         <div class="offers">
-            <h2>Ofertas</h2>
-            @if($offers->count() > 0)
-                @foreach($offers as $offer)
-                    <div class="card">
-                        <p><span>Oferta:</span> {{ $offer->descripcion }}</p>
-                        <p><span>Válido desde:</span> {{ $offer->fecha_inicio }}</p>
-                        <p><span>Válido hasta:</span> {{ $offer->fecha_fin }}</p>
-                    </div>
-                @endforeach
-            @else
-                <p>No hay ofertas disponibles para este emprendimiento.</p>
-            @endif
+            <h2>Ofertas Disponibles</h2>
+            @foreach ($offers as $offer)
+            <div class="card">
+                <p><strong>Oferta:</strong> {{ $offer->descripcion }}</p>
+                <p><strong>Válido desde:</strong> {{ $offer->fecha_inicio }}</p>
+                <p><strong>Válido hasta:</strong> {{ $offer->fecha_fin }}</p>
+                <button class="btn-voucher" onclick="openModal({{ $offer->id }})">Generar Voucher</button>
+            </div>
+            @endforeach
         </div>
     </div>
+
+    <!-- Modal -->
+    <div id="voucherModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                Generar Voucher
+            </div>
+            <form id="voucherForm">
+                @csrf
+                <input type="hidden" id="oferta_id" name="oferta_id">
+                <div class="modal-body">
+                    <label for="nombre_cliente">Nombre del Beneficiario</label>
+                    <input type="text" id="nombre_cliente" name="nombre_cliente" required>
+                    <label for="rut">RUT del Beneficiario</label>
+                    <input type="text" id="rut" name="rut" required>
+                    <div id="qrCodeContainer"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="close-btn" onclick="closeModal()">Cerrar</button>
+                    <button type="submit" class="btn-generate">Generar Voucher</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        function openModal(offerId) {
+            const modal = document.getElementById('voucherModal');
+            modal.style.display = 'flex';
+            document.getElementById('oferta_id').value = offerId;
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('voucherModal');
+            modal.style.display = 'none';
+        }
+
+        document.getElementById('voucherForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const offerId = document.getElementById('oferta_id').value;
+            const nombreCliente = document.getElementById('nombre_cliente').value;
+            const rut = document.getElementById('rut').value;
+
+            try {
+                const response = await fetch('/voucher/store', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    },
+                    body: JSON.stringify({ oferta_id: offerId, nombre_cliente: nombreCliente, rut: rut })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    document.getElementById('qrCodeContainer').innerHTML = `<img src="${data.qrUrl}" alt="Código QR generado">`;
+                } else {
+                    alert('Error al generar el voucher. Intente nuevamente.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Ocurrió un error al procesar la solicitud.');
+            }
+        });
+    </script>
 </body>
 </html>
 @endsection

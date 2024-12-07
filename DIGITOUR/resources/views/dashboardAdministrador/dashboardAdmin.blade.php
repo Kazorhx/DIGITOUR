@@ -227,10 +227,10 @@
 
                             <a href="{{ route('usuarios.edit', $usuario->id) }}" class="btn btn-sm btn-light">Editar</a>
 
-                            <form method="POST" action="{{ route('usuarios.destroy', $usuario->id) }}" style="display:inline;">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
+                            <form method="POST" action="{{ route('usuarios.destroy', $usuario->id) }}">
+                          @csrf
+                            @method('DELETE')
+                              <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('¿Estás seguro de que deseas eliminar este usuario?')">Eliminar</button>
                             </form>
                         </td>
                     </tr>

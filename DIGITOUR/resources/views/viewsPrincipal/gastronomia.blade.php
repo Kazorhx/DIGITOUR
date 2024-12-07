@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gastronomía - Los Queñes</title>
     <style>
-        /* Reset y estilos base */
         * {
             margin: 0;
             padding: 0;
@@ -17,20 +16,24 @@
 
         body {
             background-color: #f5f5f5;
-            line-height: 1.6;
-            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
-        img {
-            max-width: 100%;
-            display: block;
+        .content {
+            flex: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
 
-        /* Encabezado y hero */
         .hero {
             position: relative;
             height: 400px;
+            border-radius: 15px;
             overflow: hidden;
+            margin: 20px 0;
         }
 
         .hero img {
@@ -46,153 +49,135 @@
             transform: translate(-50%, -50%);
             color: white;
             text-align: center;
-            font-size: 36px;
+            font-size: 32px;
             font-weight: bold;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            font-style: italic;
         }
 
-        /* Texto introductorio */
         .intro-text {
-            max-width: 1200px;
-            margin: 30px auto;
-            padding: 20px;
             text-align: center;
             color: #666;
+            line-height: 1.6;
+            font-size: 15px;
+            margin: 30px auto;
+            max-width: 900px;
+            padding: 0 20px;
         }
 
-        /* Sección de restaurantes */
-        .restaurants-section {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
+        .cabins-section {
+            margin-bottom: 40px;
         }
 
-        .restaurants-container {
-            background-color: #f0f0f0;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .restaurant-card {
-            display: flex;
+        .cabin-card {
             background: white;
-            border-radius: 10px;
+            border-radius: 15px;
             overflow: hidden;
             margin-bottom: 20px;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .restaurant-card img {
-            width: 200px;
-            height: 150px;
+        .cabin-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .cabin-image-container {
+            width: 300px;
+            height: 200px;
+            border-radius: 10px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .cabin-image-container img {
+            width: 100%;
+            height: 100%;
             object-fit: cover;
         }
 
-        .restaurant-content {
-            padding: 20px;
+        .cabin-content {
             flex: 1;
             display: flex;
-            justify-content: space-between;
-            align-items: start;
+            flex-direction: column;
+            gap: 15px;
         }
 
-        .restaurant-info {
-            flex: 1;
-        }
-
-        .restaurant-info h3 {
-            margin-bottom: 10px;
-            font-size: 18px;
+        .cabin-title {
             color: #333;
+            font-size: 20px;
+            font-weight: bold;
         }
 
-        .restaurant-info p {
-            font-size: 14px;
+        .cabin-description {
             color: #666;
+            font-size: 14px;
+            line-height: 1.5;
         }
 
         .btn-como-llegar {
+            display: inline-block;
             background: #2ea843;
             color: white;
             padding: 8px 20px;
             border-radius: 20px;
             text-decoration: none;
             font-size: 14px;
-            white-space: nowrap;
-        }
-
-        .btn-como-llegar:hover {
-            background: #27963a;
+            align-self: flex-start;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
 
         /* Pie de página */
         .footer {
-            background: #6BC1B8;
+            background: #2ea843;
             color: white;
-            padding: 40px 20px;
-            margin-top: 40px;
+            text-align: center;
+            padding: 20px 0;
+            width: 100%;
+            position: relative;
+            left: 0;
         }
 
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 30px;
+        .footer p {
+            margin: 0;
+            font-size: 14px;
         }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 8px;
-        }
-
-        .footer-links a {
-            color: white;
-            text-decoration: none;
-            font-size: 13px;
-            opacity: 0.9;
-        }
-
-        .footer-links a:hover {
-            opacity: 1;
-        }
-            .intro-text {
-        max-width: 1200px;
-        margin: 30px auto;
-        padding: 20px;
-        text-align: center;
-        color: #333; /* Color más oscuro para mayor contraste */
-        font-size: 22px; /* Tamaño de fuente más grande */
-        line-height: 1.8; /* Más espaciado entre líneas para legibilidad */
-        background-color: #f0f0f0; /* Fondo claro para resaltar */
-        border-radius: 10px; /* Bordes redondeados */
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para mayor profundidad */
-    }
     </style>
 </head>
 <body>
+
+<div class="content">
     <section class="hero">
         <img src="{{ asset('images/comida3.jpg') }}" alt="Gastronomía">
         <div class="hero-text">Descubre las delicias<br>en Los Queñes</div>
     </section>
 
-  <div class="intro-text">
-    En Los Queñes, cada plato cuenta una historia. Desde las empanadas rellenas de carne y especias locales hasta el exquisito cordero al palo, nuestros sabores reflejan la riqueza de nuestra tierra. ¡Descubre la auténtica esencia de Los Queñes en cada bocado!
-</div>
-<div class="cabins-section">
+    <div class="intro-text">
+        En Los Queñes, cada plato cuenta una historia. Desde las empanadas rellenas de carne y especias locales hasta el exquisito cordero al palo, nuestros sabores reflejan la riqueza de nuestra tierra. ¡Descubre la auténtica esencia de Los Queñes en cada bocado!
+    </div>
+
+    <div class="cabins-section">
         @foreach ($perfiles as $profile)
-            @include('templateCard', [
-                'image' => $profile->image ?? asset('images/default_cabin.jpg'),
-                'nombre' => $profile->nombre,
-                'descripcion' => $profile->descripcion,
-                'url_geolocalizacion' => $profile->url_geolocalizacion,
-            ])
+            <a href="{{ route('profiles.show', $profile->id) }}" class="cabin-card">
+                <div class="cabin-image-container">
+                    <img src="{{ $profile->image ?? asset('images/comida1.jpg') }}" alt="{{ $profile->nombre }}">
+                </div>
+                <div class="cabin-content">
+                    <h3 class="cabin-title">{{ $profile->nombre }}</h3>
+                    <p class="cabin-description">{{ Str::limit($profile->descripcion, 100) }}</p>
+                </div>
+            </a>
         @endforeach
     </div>
+</div>
+
 </body>
 </html>
 @endsection

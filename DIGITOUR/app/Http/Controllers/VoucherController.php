@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Voucher;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
+
 
 class VoucherController extends Controller
 {
@@ -26,53 +29,47 @@ class VoucherController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-{
-    $validated = $request->validate([
-        'rut' => 'required|string|max:50',
-        'nombre' => 'required|string|max:255',
-        'oferta_id' => 'required|exists:offers,id',
-    ]);
+     public function store(Request $request)
+     {
+         // Validar los datos del formulario
+         $validated = $request->validate([
+             'rut' => 'required|string|max:255',
+             'nombre_cliente' => 'required|string|max:255',
+             'oferta_id' => 'required|exists:offers,id',
+         ]);
 
-    $voucher = Voucher::create([
-        'rut' => $validated['rut'],
-        'nombre_cliente' => $validated['nombre'],
-        'oferta_id' => $validated['oferta_id'],
-        'fecha_emision' => now(),
-        'url' => '',
-    ]);
+         // Generar un ID único para usar como identificador
+         $id = Str::uuid()->toString();
 
-    // Generar la URL del QR
-    $qrUrl = route('voucher.qr', ['id' => $voucher->id]);
-    $voucher->update(['url' => $qrUrl]);
+         // Crear el nuevo voucher
+         $voucher = new Voucher();
+         $voucher->id = $id; // ID único generado
+         $voucher->fecha_emision = now();
+         $voucher->fecha_validacion = now()->addDays(30); // Ejemplo: válido por 30 días
+         $voucher->rut = $validated['rut'];
+         $voucher->nombre_cliente = $validated['nombre_cliente'];
+         $voucher->oferta_id = $validated['oferta_id'];
+         $voucher->estado_voucher_id = 1; // Estado inicial del voucher
+         $voucher->url = route('voucher.show', ['id' => $id]); // Generar el URL del voucher
 
-    return redirect()->route('voucher.qr', ['id' => $voucher->id])
-        ->with('success', 'Voucher generado exitosamente.');
-}
+         // Guardar en la base de datos
+         $voucher->save();
 
-// Método para mostrar el QR
-public function showQr($id)
+         return response()->json([
+             'success' => true,
+             'message' => 'Voucher creado exitosamente.',
+             'qrUrl' => $voucher->url,
+         ]);
+     }
+   public function show($id)
 {
     $voucher = Voucher::findOrFail($id);
-    return view('voucher.qr', compact('voucher')); 
+
+    return view('vouchers.show', [
+        'voucher' => $voucher,
+        'qrCode' => QrCode::size(200)->generate($voucher->url),
+    ]);
 }
-
-// Método para descargar el QR como PDF
-public function downloadPdf($id)
-{
-    $voucher = Voucher::findOrFail($id);
-    $pdf = \PDF::loadView('voucher.pdf', compact('voucher'));
-    return $pdf->download("voucher-{$voucher->id}.pdf");
-}
-
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Voucher $voucher)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -82,9 +79,16 @@ public function downloadPdf($id)
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+public function download($id)
+{
+    $voucher = Voucher::findOrFail($id);
+    $qrCode = QrCode::format('png')->size(200)->generate($voucher->url);
+
+    return response($qrCode)
+        ->header('Content-Type', 'image/png')
+        ->header('Content-Disposition', 'attachment; filename="voucher_'.$voucher->id.'.png"');
+}
+
     public function update(Request $request, Voucher $voucher)
     {
         //

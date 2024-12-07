@@ -119,12 +119,20 @@ public function registroadm(Request $request)
 
             return redirect()->route('usuarios.index')->with('success', 'Usuario actualizado.');
         }
-        public function destroy($id)
-        {
-            User::findOrFail($id)->delete();
+      public function destroy($id)
+{
+    try {
+        // Buscar el usuario por ID y eliminarlo
+        $usuario = User::findOrFail($id);
+        $usuario->delete();
 
-            return redirect()->back()->with('success', 'Usuario eliminado.');
-        }
+        // Redirigir con mensaje de éxito
+        return redirect()->back()->with('success', 'Usuario eliminado exitosamente.');
+    } catch (\Exception $e) {
+        // Redirigir con mensaje de error si algo falla
+        return redirect()->back()->with('error', 'Ocurrió un error al intentar eliminar el usuario.');
+    }
+}
 
 
 }

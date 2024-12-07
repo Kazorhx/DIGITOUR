@@ -41,9 +41,9 @@ public function products()
         return $this->hasMany(Product::class);
     }
 
-    public function offers()
+       public function offers()
     {
-        return $this->hasMany(Offer::class);
+        return $this->hasMany(Offer::class, 'id_perfil');
     }
 }
 

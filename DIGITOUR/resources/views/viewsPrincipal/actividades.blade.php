@@ -6,209 +6,178 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Actividades - Los Queñes</title>
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
     <style>
-        /* Reset y estilo base */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
+            font-family: Arial, sans-serif;
         }
 
         body {
-            background-color: #f4f4f4;
-        }
-
-        /* Hero Section */
-        .hero-section {
+            background-color: #f5f5f5;
             display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 20px;
-            padding: 30px;
-            max-width: 1200px;
-            margin: 20px auto;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
-        .hero-card {
+        .content {
             flex: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .hero {
             position: relative;
-            border-radius: 10px;
+            height: 400px;
+            border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
+            margin: 20px 0;
         }
 
-        .hero-card:hover {
-            transform: scale(1.05);
-        }
-
-        .hero-card img {
+        .hero img {
             width: 100%;
-            height: 300px;
+            height: 100%;
             object-fit: cover;
         }
 
-        .hero-card h2 {
+        .hero-text {
             position: absolute;
-            bottom: 60px; /* Aumenta el espacio desde el borde inferior */
-            left: 20px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             color: white;
-            font-size: 24px;
-            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
-            font-weight: bold;
-            margin: 0;
-        }
-
-        .hero-card p {
-            position: absolute;
-            bottom: 20px; /* Ajusta la distancia del texto */
-            left: 20px;
-            color: white;
-            font-size: 16px;
-            margin: 0; /* Elimina el margen por defecto */
-        }
-
-        /* Content Section */
-        .content-section {
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 0 20px;
             text-align: center;
-        }
-
-        .content-title {
-            color: #2ea843;
-            margin-bottom: 20px;
             font-size: 32px;
             font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            font-style: italic;
         }
 
-        .content-text {
+        .intro-text {
+            text-align: center;
             color: #666;
-            line-height: 1.8;
-            margin-bottom: 30px;
-            font-size: 18px;
+            line-height: 1.6;
+            font-size: 15px;
+            margin: 30px auto;
+            max-width: 900px;
+            padding: 0 20px;
         }
 
-        /* Activity Cards */
-        .activity-card {
+        .cabins-section {
+            margin-bottom: 40px;
+        }
+
+        .cabin-card {
             background: white;
-            border-radius: 10px;
-            padding: 20px;
+            border-radius: 15px;
+            overflow: hidden;
             margin-bottom: 20px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 15px;
             display: flex;
-            gap: 20px;
             align-items: center;
+            gap: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .activity-card img {
-            width: 250px;
-            height: 180px;
+        .cabin-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .cabin-image-container {
+            width: 300px;
+            height: 200px;
+            border-radius: 10px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .cabin-image-container img {
+            width: 100%;
+            height: 100%;
             object-fit: cover;
-            border-radius: 8px;
         }
 
-        .activity-content {
+        .cabin-content {
             flex: 1;
-            text-align: left;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
         }
 
-        .activity-content h3 {
+        .cabin-title {
             color: #333;
-            margin-bottom: 10px;
-            font-size: 24px;
+            font-size: 20px;
             font-weight: bold;
         }
 
-        .activity-content p {
+        .cabin-description {
             color: #666;
-            margin-bottom: 15px;
-            font-size: 16px;
-            line-height: 1.6;
+            font-size: 14px;
+            line-height: 1.5;
         }
 
-        .btn-details {
+        .btn-como-llegar {
             display: inline-block;
             background: #2ea843;
             color: white;
-            padding: 10px 25px;
-            border-radius: 5px;
+            padding: 8px 20px;
+            border-radius: 20px;
             text-decoration: none;
-            font-size: 16px;
-            transition: background-color 0.3s ease;
+            font-size: 14px;
+            align-self: flex-start;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
 
-        .btn-details:hover {
-            background-color: #239336;
-        }
-
-        /* Footer Section */
+        /* Pie de página */
         .footer {
-            margin-top: 40px;
+            background: #2ea843;
+            color: white;
             text-align: center;
-            font-size: 16px;
-            color: #666;
+            padding: 20px 0;
+            width: 100%;
+            position: relative;
+            left: 0;
         }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .hero-section {
-                flex-direction: column;
-                gap: 10px;
-            }
-
-            .activity-card {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .activity-card img {
-                width: 100%;
-                height: auto;
-            }
-
-            .activity-content {
-                text-align: center;
-            }
+        .footer p {
+            margin: 0;
+            font-size: 14px;
         }
     </style>
 </head>
 <body>
-    <!-- Hero Section -->
-    <section class="hero-section">
-        <div class="hero-card">
-            <img src="{{ asset('images/kayak.jpg') }}" alt="Rafting en Los Queñes">
-            <h2>Busca Adrenalina</h2>
-            <p>¡Descubre la aventura del rafting!</p>
-        </div>
-        <div class="hero-card">
-            <img src="{{ asset('images/Servicios Spa.jpg') }}" alt="Spa en Los Queñes">
-            <h2>Relájate</h2>
-            <p>Disfruta de la serenidad y el confort</p>
-        </div>
+
+<div class="content">
+    <section class="hero">
+        <img src="{{ asset('images/kayak.jpg') }}" alt="Actividades en Los Queñes">
+        <div class="hero-text">Vive la aventura<br>en Los Queñes</div>
     </section>
 
-    <!-- Content Section -->
-    <section class="content-section">
-        <h2 class="content-title">Vive la Aventura y Relájate en Los Queñes</h2>
-        <p class="content-text">
-            En Los Queñes, la emoción y el descanso se unen para ofrecerte experiencias inolvidables. Ya sea que busques la adrenalina del rafting o la serenidad de un spa, aquí encontrarás actividades para todos los gustos.
-        </p>
+    <div class="intro-text">
+        Desde la adrenalina del rafting en el río hasta la tranquilidad de paseos guiados, descubre una amplia gama de actividades que Los Queñes tiene para ofrecer.
+    </div>
 
- <div class="cabins-section">
+    <div class="cabins-section">
         @foreach ($perfiles as $profile)
-            @include('templateCard', [
-                'image' => $profile->image ?? asset('images/default_cabin.jpg'),
-                'nombre' => $profile->nombre,
-                'descripcion' => $profile->descripcion,
-                'url_geolocalizacion' => $profile->url_geolocalizacion,
-            ])
+            <a href="{{ route('profiles.show', $profile->id) }}" class="cabin-card">
+                <div class="cabin-image-container">
+                    <img src="{{ $profile->image ?? asset('images/kayak.jpg') }}" alt="{{ $profile->nombre }}">
+                </div>
+                <div class="cabin-content">
+                    <h3 class="cabin-title">{{ $profile->nombre }}</h3>
+                    <p class="cabin-description">{{ Str::limit($profile->descripcion, 100) }}</p>
+                </div>
+            </a>
         @endforeach
     </div>
-    </section>
+</div>
+
 </body>
 </html>
 @endsection

@@ -77,13 +77,14 @@
             background-color: #2a3441;
             padding: 2rem;
             border-radius: 10px;
-            margin-top: 2rem;
+            margin: 2rem auto; /* Centramos el contenedor horizontalmente */
+            max-width: 600px; /* Ancho máximo */
+            text-align: center; /* Centrar el contenido */
         }
 
         .form-header {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            justify-content: center; /* Centra el título */
             margin-bottom: 2rem;
         }
 
@@ -103,6 +104,7 @@
 
         .form-group {
             margin-bottom: 1.5rem;
+            text-align: left;
         }
 
         .form-group label {
@@ -129,16 +131,6 @@
             outline: none;
             border-color: #4ade80;
         }
-
-        .social-inputs {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-        }
-
-        #vouchers-section {
-            display: none;
-        }
     </style>
 </head>
 <body>
@@ -150,80 +142,78 @@
                 <h2>Panel Suscriptor</h2>
             </div>
             <nav class="navbar">
-                <div class="nav-item active">
+                <div class="nav-item active" id="nav-emprendimiento">
                     <span>📊</span>
                     <span>Información del Emprendimiento</span>
                 </div>
-                <div class="nav-item">
+                <div class="nav-item" id="nav-vouchers">
                     <span>🎟️</span>
                     <span>Vouchers y Ofertas</span>
                 </div>
             </nav>
         </aside>
 
-<main class="main-content">
-    <div class="content-form" id="emprendimiento-section">
-        <div class="form-header">
-            <h2>Información del Emprendimiento</h2>
-        </div>
-
-        <form method="POST" action="{{ route('profiles.update') }}" enctype="multipart/form-data">
-            @csrf
-            @method('PUT')
-
-            <div class="form-group">
-                <label for="nombre">Nombre del Emprendimiento</label>
-                <input type="text" name="nombre" id="nombre" placeholder="Ingrese el nombre de su emprendimiento" value="{{ old('nombre', $profile->nombre ?? '') }}">
-            </div>
-
-            <div class="form-group">
-                <label for="descripcion">Descripción</label>
-                <textarea name="descripcion" id="descripcion" rows="4" placeholder="Describa su emprendimiento">{{ old('descripcion', $profile->descripcion ?? '') }}</textarea>
-            </div>
-
-            <div class="form-group">
-                <label for="redes_sociales">Redes Sociales</label>
-                <div class="social-inputs">
-                    <input type="text" name="redes_sociales" id="redes_sociales" placeholder="Ingrese URL de red social" value="{{ old('redes_sociales', $profile->redes_sociales ?? '') }}">
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Información del Emprendimiento -->
+            <div class="content-form" id="emprendimiento-section">
+                <div class="form-header">
+                    <h2>Información del Emprendimiento</h2>
                 </div>
+                <form method="POST" action="{{ route('profiles.update') }}" enctype="multipart/form-data">
+                    @csrf
+                    @method('PUT')
+
+                    <div class="form-group">
+                        <label for="nombre">Nombre del Emprendimiento</label>
+                        <input type="text" name="nombre" id="nombre" placeholder="Ingrese el nombre de su emprendimiento" value="{{ old('nombre', $profile->nombre ?? '') }}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="descripcion">Descripción</label>
+                        <textarea name="descripcion" id="descripcion" rows="4" placeholder="Describa su emprendimiento">{{ old('descripcion', $profile->descripcion ?? '') }}</textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="redes_sociales">Redes Sociales</label>
+                        <div class="social-inputs">
+                            <input type="text" name="redes_sociales" id="redes_sociales" placeholder="Ingrese URL de red social" value="{{ old('redes_sociales', $profile->redes_sociales ?? '') }}">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="datos_contacto">Datos de Contacto</label>
+                        <input type="tel" name="datos_contacto" id="datos_contacto" placeholder="Teléfono" value="{{ old('datos_contacto', $profile->datos_contacto ?? '') }}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="url_geolocalizacion">Geolocalización</label>
+                        <input type="text" name="url_geolocalizacion" id="url_geolocalizacion" placeholder="URL de Google Maps" value="{{ old('url_geolocalizacion', $profile->url_geolocalizacion ?? '') }}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="imagen">Subir Imagen</label>
+                        <input type="file" name="imagen" id="imagen" accept="image/*">
+                    </div>
+
+                    @if(isset($profile->imagen))
+                        <div class="form-group">
+                            <p>Imagen:</p>
+                            <img src="{{ Storage::url($profile->imagen) }}" alt="Imagen del Emprendimiento" style="width: 150px; height: auto;">
+                        </div>
+                    @endif
+
+                    <button type="submit" class="btn-green">Guardar Cambios</button>
+                </form>
             </div>
 
-            <div class="form-group">
-                <label for="datos_contacto">Datos de Contacto</label>
-                <input type="tel" name="datos_contacto" id="datos_contacto" placeholder="Teléfono" value="{{ old('datos_contacto', $profile->datos_contacto ?? '') }}">
-            </div>
-
-            <div class="form-group">
-                <label for="url_geolocalizacion">Geolocalización</label>
-                <input type="text" name="url_geolocalizacion" id="url_geolocalizacion" placeholder="URL de Google Maps" value="{{ old('url_geolocalizacion', $profile->url_geolocalizacion ?? '') }}">
-            </div>
-
-            <div class="form-group">
-                <label for="imagen">Subir Imagen</label>
-                <input type="file" name="imagen" id="imagen" accept="image/*">
-            </div>
-
-            @if(isset($profile->imagen))
-                <div class="form-group">
-                    <p>Imagen:</p>
-                    <img src="{{ Storage::url($profile->imagen) }}" alt="Imagen del Emprendimiento" style="width: 150px; height: auto;">
-                </div>
-            @endif
-
-            <!-- Botón de Guardar -->
-            <button type="submit" class="btn-green">Guardar Cambios</button>
-        </form>
-    </div>
-</main>
-
-
-            <!--Ofertas-->
-            <div class="content-form" id="vouchers-section">
-            @if (session('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
-    </div>
-@endif
+            <!-- Ofertas -->
+            <div class="content-form" id="vouchers-section" style="display: none;">
+                @if (session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
                 <div class="form-header">
                     <h2>Gestión de Ofertas</h2>
                 </div>
@@ -231,19 +221,19 @@
                     @csrf
                     <div class="form-group">
                         <label for="descripcion">Descripción de la oferta</label>
-                        <textarea name="descripcion" id="descripcion" rows="3" placeholder="Ingrese el tipo de oferta Ej: Porcentaje de descuento u 2x1">{{ old('descripcion_oferta') }}</textarea>
+                        <textarea name="descripcion" id="descripcion" rows="3" placeholder="Ingrese el tipo de oferta Ej: Porcentaje de descuento u 2x1">{{ old('descripcion') }}</textarea>
                     </div>
                     <div class="form-group">
                         <label for="fecha_inicio">Fecha de Inicio</label>
                         <input type="date" name="fecha_inicio" id="fecha_inicio" value="{{ old('fecha_inicio') }}">
-                    </div> 
+                    </div>
                     <div class="form-group">
                         <label for="fecha_vencimiento">Fecha de Vencimiento</label>
                         <input type="date" name="fecha_vencimiento" id="fecha_vencimiento" value="{{ old('fecha_vencimiento') }}">
                     </div>
                     <div class="form-group">
                         <label for="cantidad_vouchers">Cantidad de Vouchers</label>
-                        <input type="number" name="cantidad_voucher" id="cantidad_voucher" min="1" placeholder="Ingrese la cantidad de vouchers disponibles" value="{{ old('cantidad_vouchers') }}">
+                        <input type="number" name="cantidad_vouchers" id="cantidad_vouchers" min="1" placeholder="Ingrese la cantidad de vouchers disponibles" value="{{ old('cantidad_vouchers') }}">
                     </div>
                     <button type="submit" class="btn-green">Guardar oferta</button>
                 </form>

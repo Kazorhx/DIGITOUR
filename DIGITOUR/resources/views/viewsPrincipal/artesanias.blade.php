@@ -16,15 +16,13 @@
 
         body {
             background-color: white;
-            margin: 0 auto;
-            padding: 0;
             display: flex;
             flex-direction: column;
-            min-height: 100vh; /* Asegura que el contenido mínimo cubra toda la ventana */
+            min-height: 100vh;
         }
 
         .content {
-            flex: 1; /* Permite que el contenido principal ocupe el espacio disponible */
+            flex: 1;
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
@@ -53,7 +51,7 @@
             text-align: center;
             font-size: 32px;
             font-weight: bold;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
             width: 100%;
             font-style: italic;
         }
@@ -68,7 +66,11 @@
             padding: 0 20px;
         }
 
-        .artisan-card {
+        .cabins-section {
+            margin-bottom: 40px;
+        }
+
+        .cabin-card {
             background: white;
             border-radius: 15px;
             overflow: hidden;
@@ -77,10 +79,17 @@
             display: flex;
             align-items: center;
             gap: 20px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .artisan-image-container {
+        .cabin-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .cabin-image-container {
             width: 300px;
             height: 200px;
             border-radius: 10px;
@@ -88,26 +97,26 @@
             flex-shrink: 0;
         }
 
-        .artisan-image-container img {
+        .cabin-image-container img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
 
-        .artisan-content {
+        .cabin-content {
             flex: 1;
             display: flex;
             flex-direction: column;
             gap: 15px;
         }
 
-        .artisan-title {
+        .cabin-title {
             color: #333;
             font-size: 20px;
             font-weight: bold;
         }
 
-        .artisan-description {
+        .cabin-description {
             color: #666;
             font-size: 14px;
             line-height: 1.5;
@@ -122,17 +131,17 @@
             text-decoration: none;
             font-size: 14px;
             align-self: flex-start;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
 
         /* Pie de página */
         .footer {
-            background: #2ea843; /* Color verde */
+            background: #2ea843;
             color: white;
-            padding: 20px 0;
             text-align: center;
-            width: 100%; /* Asegura que abarque todo el ancho */
-            position: relative; /* Asegura que no esté dentro del flujo limitado */
+            padding: 20px 0;
+            width: 100%;
+            position: relative;
             left: 0;
         }
 
@@ -143,27 +152,31 @@
     </style>
 </head>
 <body>
-    <div class="content">
-        <section class="hero">
-            <img src="{{ asset('images/artesania1349.png') }}" alt="Artesanías en Los Queñes">
-            <div class="hero-text">Descubre el arte local<br>en Los Queñes</div>
-        </section>
 
-        <div class="intro-text">
-            En Los Queñes, nuestros artesanos mantienen vivas las tradiciones ancestrales a través de sus creaciones únicas. Cada pieza cuenta una historia, transmitiendo la rica cultura de nuestra región mediante técnicas heredadas de generación en generación. Descubre la magia de nuestras artesanías locales y llévate un pedacito de nuestra cultura.
-        </div>
+<div class="content">
+    <section class="hero">
+        <img src="{{ asset('images/artesania1349.png') }}" alt="Artesanías en Los Queñes">
+        <div class="hero-text">Descubre el arte local<br>en Los Queñes</div>
+    </section>
 
-       <div class="cabins-section">
+    <div class="intro-text">
+        En Los Queñes, nuestros artesanos mantienen vivas las tradiciones ancestrales a través de sus creaciones únicas. Cada pieza cuenta una historia, transmitiendo la rica cultura de nuestra región mediante técnicas heredadas de generación en generación. Descubre la magia de nuestras artesanías locales y llévate un pedacito de nuestra cultura.
+    </div>
+
+    <div class="cabins-section">
         @foreach ($perfiles as $profile)
-            @include('templateCard', [
-                'image' => $profile->image ?? asset('images/artesania.jpeg'),
-                'nombre' => $profile->nombre,
-                'descripcion' => $profile->descripcion,
-                'url_geolocalizacion' => $profile->url_geolocalizacion,
-            ])
+            <a href="{{ route('profiles.show', $profile->id) }}" class="cabin-card">
+                <div class="cabin-image-container">
+                    <img src="{{ $profile->image ?? asset('images/artesania.jpeg') }}" alt="{{ $profile->nombre }}">
+                </div>
+                <div class="cabin-content">
+                    <h3 class="cabin-title">{{ $profile->nombre }}</h3>
+                    <p class="cabin-description">{{ Str::limit($profile->descripcion, 100) }}</p>
+                </div>
+            </a>
         @endforeach
     </div>
-   </div>
+</div>
 
 </body>
 </html>

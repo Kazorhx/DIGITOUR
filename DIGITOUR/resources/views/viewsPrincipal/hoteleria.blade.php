@@ -80,6 +80,13 @@
             align-items: center;
             gap: 20px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .cabin-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
         .cabin-image-container {
@@ -158,14 +165,16 @@
 
     <div class="cabins-section">
         @foreach ($perfiles as $profile)
-            @include('templateCard', [
-                'image' => $profile->image ?? asset('images/default_cabin.jpg'),
-                'nombre' => $profile->nombre,
-                'descripcion' => $profile->descripcion,
-                'url_geolocalizacion' => $profile->url_geolocalizacion,
-            ])
+            <a href="{{ route('profiles.show', $profile->id) }}" class="cabin-card">
+                <div class="cabin-image-container">
+                    <img src="{{ $profile->image ?? asset('images/hospedaje1.jpeg') }}" alt="{{ $profile->nombre }}">
+                </div>
+                <div class="cabin-content">
+                    <h3 class="cabin-title">{{ $profile->nombre }}</h3>
+                    <p class="cabin-description">{{ Str::limit($profile->descripcion, 100) }}</p>
+                </div>
+            </a>
         @endforeach
     </div>
 </div>
 @endsection
-
