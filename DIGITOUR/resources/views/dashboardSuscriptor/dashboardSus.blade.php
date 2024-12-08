@@ -233,7 +233,7 @@
                     </div>
                     <div class="form-group">
                         <label for="cantidad_vouchers">Cantidad de Vouchers</label>
-                        <input type="number" name="cantidad_vouchers" id="cantidad_vouchers" min="1" placeholder="Ingrese la cantidad de vouchers disponibles" value="{{ old('cantidad_vouchers') }}">
+                        <input type="number" name="cantidad_voucher" id="cantidad_voucher" min="1" placeholder="Ingrese la cantidad de vouchers disponibles" value="{{ old('cantidad_vouchers') }}">
                     </div>
                     <button type="submit" class="btn-green">Guardar oferta</button>
                 </form>
