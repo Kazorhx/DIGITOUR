@@ -10,9 +10,10 @@
     <p><strong>Fecha de validación:</strong> {{ $voucher->fecha_validacion }}</p>
 
     <div>
+        {{-- Renderizar el código QR --}}
         {!! $qrCode !!}
     </div>
 
-    <a href="{{ route('voucher.download', $voucher->id) }}" class="btn btn-success mt-3">Descargar QR</a>
+    <a href="{{ route('voucher.downloadPdf', $voucher->id) }}" class="btn btn-success mt-3">Descargar PDF</a>
 </div>
 @endsection

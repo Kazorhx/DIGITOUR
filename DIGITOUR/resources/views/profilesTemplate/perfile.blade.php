@@ -219,10 +219,12 @@
                 <div class="modal-footer">
                     <button type="button" class="close-btn" onclick="closeModal()">Cerrar</button>
                     <button type="submit" class="btn-generate">Generar Voucher</button>
+                    <div id="qrcode"></div>
                 </div>
             </form>
         </div>
     </div>
+    <script src="{{ asset('js/qrcode.min.js')}}"></script>
 
     <!-- Scripts -->
     <script>
@@ -257,7 +259,7 @@
                 const data = await response.json();
 
                 if (data.success) {
-                    document.getElementById('qrCodeContainer').innerHTML = `<img src="${data.qrUrl}" alt="Código QR generado">`;
+                    new QRCode(document.getElementById("qrcode"), data.qrUrl);
                 } else {
                     alert('Error al generar el voucher. Intente nuevamente.');
                 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Voucher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Barryvdh\DomPDF\Facade\Pdf;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 
@@ -13,25 +14,25 @@ class VoucherController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        //
-    }
+public function index()
+{
+    //
+}
 
-    /**
+/**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-        //
-    }
+public function create()
+{
+    //
+}
 
-    /**
+/**
      * Store a newly created resource in storage.
      */
-     public function store(Request $request)
-     {
-         // Validar los datos del formulario
+public function store(Request $request)
+{
+    // Validar los datos del formulario
          $validated = $request->validate([
              'rut' => 'required|string|max:255',
              'nombre_cliente' => 'required|string|max:255',
@@ -55,50 +56,65 @@ class VoucherController extends Controller
          // Guardar en la base de datos
          $voucher->save();
 
+
+         //generar qr en imagen y guardarlo
+
          return response()->json([
              'success' => true,
              'message' => 'Voucher creado exitosamente.',
              'qrUrl' => $voucher->url,
          ]);
-     }
-   public function show($id)
+}
+public function show($id)
 {
+
     $voucher = Voucher::findOrFail($id);
 
-    return view('vouchers.show', [
-        'voucher' => $voucher,
-        'qrCode' => QrCode::size(200)->generate($voucher->url),
-    ]);
+//cambiar estado de qr validado
+
+
+    return view('vouchers.show', compact('voucher' ));
 }
 
-    /**
+/**
      * Show the form for editing the specified resource.
      */
-    public function edit(Voucher $voucher)
-    {
-        //
-    }
+public function edit(Voucher $voucher)
+{
+    //
+}
 
 public function download($id)
 {
-    $voucher = Voucher::findOrFail($id);
-    $qrCode = QrCode::format('png')->size(200)->generate($voucher->url);
 
-    return response($qrCode)
-        ->header('Content-Type', 'image/png')
-        ->header('Content-Disposition', 'attachment; filename="voucher_'.$voucher->id.'.png"');
 }
 
-    public function update(Request $request, Voucher $voucher)
-    {
-        //
-    }
+public function update(Request $request, Voucher $voucher)
+{
+    //
+}
 
-    /**
+/**
      * Remove the specified resource from storage.
      */
-    public function destroy(Voucher $voucher)
-    {
-        //
-    }
+public function destroy(Voucher $voucher)
+{
+    //
+}
+public function downloadPdf($id)
+{
+    $voucher = Voucher::findOrFail($id);
+
+    // Generar el código QR en formato PNG Base64
+    $qrCode = base64_encode(QrCode::format('png')->size(200)->generate($voucher->url));
+
+    // Crear la vista del PDF
+    $pdf = Pdf::loadView('vouchers.pdf', [
+        'voucher' => $voucher,
+        'qrCode' => $qrCode,
+    ]);
+
+    // Descargar el PDF
+    return $pdf->download('voucher_' . $voucher->id . '.pdf');
+}
 }

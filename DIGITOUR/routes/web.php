@@ -27,14 +27,6 @@ Route::get('/dashboard-home', function () {
 // Ruta para procesar el login
 Route::post('/login', [AuthController::class, 'login'])->name('user.login');
 
-//Ruta para recuperar contraseña
-Route::get('/password/recover', function () {
-    return view('profilesTemplate.recoverPassword');
-})->name('password.recover');
-
-// Ruta para procesar el envío del formulario
-Route::post('/password/recover', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
-
 
 // Ruta para ver el perfil
 Route::get('/perfile', function () {
@@ -91,7 +83,6 @@ Route::get('/perfil/{id}', [OfferController::class, 'showByProfile'])->name('per
 
 // Rutas para generar y mostrar vouchers
 Route::post('/voucher/store', [VoucherController::class, 'store'])->name('vouchers.store');
-Route::get('/voucher/{id}/qr', [VoucherController::class, 'showQr'])->name('voucher.qr');
 
 Route::get('/profile/{id}', [ProfileController::class, 'show'])->name('profiles.show');
 
@@ -99,7 +90,6 @@ Route::get('/api/profiles/{id}', [ProfileController::class, 'apiShow']);
 
 Route::get('/voucher/{id}', [VoucherController::class, 'show'])->name('voucher.show');
 
-Route::get('/voucher/{id}/download', [VoucherController::class, 'download'])->name('voucher.download');
-
 Route::delete('/usuarios/{id}', [UserController::class, 'destroy'])->name('usuarios.destroy');
 
+Route::get('/voucher/{id}/download-pdf', [VoucherController::class, 'downloadPdf'])->name('voucher.downloadPdf');

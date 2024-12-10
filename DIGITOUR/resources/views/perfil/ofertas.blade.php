@@ -32,7 +32,8 @@
                     <input type="text" name="nombre" id="nombre" class="form-control">
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Generar QR</button>
+                   <a href="{{ route('voucher.downloadPdf', $offer->id) }}" class="btn btn-success mt-2">Descargar PDF</a>
+
                 </div>
             </form>
         </div>
