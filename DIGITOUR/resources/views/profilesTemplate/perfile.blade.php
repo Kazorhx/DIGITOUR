@@ -20,37 +20,59 @@
             color: #333;
         }
 
-        .content {
+        .container {
             max-width: 1200px;
             margin: 20px auto;
-            padding: 20px;
             background: #fff;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .hero {
-            position: relative;
-            height: 400px;
-            border-radius: 10px;
             overflow: hidden;
-            margin-bottom: 30px;
         }
 
-        .hero img {
+        .content {
+            padding: 20px;
+        }
+
+        .carousel {
             width: 100%;
-            height: 100%;
+            margin-bottom: 20px;
+        }
+
+        .carousel img {
+            width: 100%;
+            height: 300px;
             object-fit: cover;
         }
 
+        .details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .details img {
+            flex: 1 1 45%;
+            max-width: 400px;
+            height: auto;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+
+        .details .text {
+            flex: 1 1 50%;
+        }
+
         .details h1 {
+            font-size: 24px;
             color: #2ea843;
-            text-align: center;
+            margin-bottom: 10px;
         }
 
         .details p {
-            text-align: center;
+            text-align: justify;
             color: #666;
+            font-size: 16px;
         }
 
         .offers {
@@ -63,16 +85,26 @@
             margin-bottom: 20px;
         }
 
+        .offers .row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            justify-items: center;
+        }
+
         .card {
             background: white;
             border-radius: 10px;
-            padding: 15px;
-            margin-bottom: 20px;
+            padding: 20px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 250px;
+            height: 250px;
+            text-align: center;
         }
 
         .card p {
-            margin: 0 0 10px;
+            font-size: 16px;
+            margin-bottom: 15px;
         }
 
         .btn-voucher {
@@ -174,29 +206,46 @@
     </style>
 </head>
 <body>
-    <div class="content">
-        <!-- Imagen principal -->
-        <div class="hero">
-            <img src="{{ asset('images/publicidad 2.jpg') }}" alt="Cabecera del perfil">
-        </div>
-
-        <!-- Detalles del perfil -->
-        <div class="details">
-            <h1>{{ $profile->nombre }}</h1>
-            <p>{{ $profile->descripcion }}</p>
-        </div>
-
-        <!-- Ofertas -->
-        <div class="offers">
-            <h2>Ofertas Disponibles</h2>
-            @foreach ($offers as $offer)
-            <div class="card">
-                <p><strong>Oferta:</strong> {{ $offer->descripcion }}</p>
-                <p><strong>Válido desde:</strong> {{ $offer->fecha_inicio }}</p>
-                <p><strong>Válido hasta:</strong> {{ $offer->fecha_fin }}</p>
-                <button class="btn-voucher" onclick="openModal({{ $offer->id }})">Generar Voucher</button>
+    <!-- Carrusel -->
+   <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="{{ asset('images/publicidad.jpg') }}" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="{{ asset('images/publicidad 2.jpg') }}" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="{{ asset('images/publicidad3.jpg') }}" class="d-block w-100" alt="...">
+    </div>
+  </div>
+</div>
+    <!-- Contenido principal en recuadro blanco -->
+    <div class="container">
+        <div class="content">
+            <!-- Detalles del perfil -->
+            <div class="details">
+                <img src="{{ asset('images/cabañapremiun.jpg') }}" alt="Imagen del restaurante">
+                <div class="text">
+                    <h1>{{ $profile->nombre }}</h1>
+                    <p>{{ $profile->descripcion }}</p>
+                </div>
             </div>
-            @endforeach
+
+            <!-- Ofertas -->
+            <div class="offers">
+                <h2>Ofertas Disponibles</h2>
+                <div class="row">
+                    @foreach ($offers as $offer)
+                    <div class="card">
+                        <p><strong>Oferta:</strong> {{ $offer->descripcion }}</p>
+                        <p><strong>Desde:</strong> {{ $offer->fecha_inicio }}</p>
+                        <p><strong>Hasta:</strong> {{ $offer->fecha_fin }}</p>
+                        <button class="btn-voucher" onclick="openModal({{ $offer->id }})">Generar Voucher</button>
+                    </div>
+                    @endforeach
+                </div>
+            </div>
         </div>
     </div>
 
@@ -224,7 +273,7 @@
             </form>
         </div>
     </div>
-    
+
     <script src="{{ asset('js/qrcode.min.js')}}"></script>
 
     <!-- Scripts -->
