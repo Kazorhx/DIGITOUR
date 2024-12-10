@@ -27,7 +27,7 @@ class Voucher extends Model
     // Un voucher pertenece a una oferta
     public function offer()
     {
-        return $this->belongsTo(Offer::class);
+         return $this->belongsTo(Offer::class, 'oferta_id');
     }
 
     // Un voucher pertenece a un usuario

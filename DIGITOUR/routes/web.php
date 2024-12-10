@@ -93,3 +93,13 @@ Route::get('/voucher/{id}', [VoucherController::class, 'show'])->name('voucher.s
 Route::delete('/usuarios/{id}', [UserController::class, 'destroy'])->name('usuarios.destroy');
 
 Route::get('/voucher/{id}/download-pdf', [VoucherController::class, 'downloadPdf'])->name('voucher.downloadPdf');
+
+//Route::post('/voucher/{id}/validate', [VoucherController::class, 'validateVoucher'])->name('voucher.validate');
+
+//Route::get('/voucher/{id}/validate', [VoucherController::class, 'validateVoucher'])->where('id', '[a-zA-Z0-9\-]+')->name('voucher.validate');
+//Route::patch('/voucher/{id}/validate', [VoucherController::class, 'validateVoucher'])->where('id', '[a-zA-Z0-9\-]+')->name('voucher.validate');
+Route::patch('/voucher/{id}/validate', [VoucherController::class, 'validateVoucher'])->name('voucher.validate');
+
+
+//Route::post('/voucher/{id}/validate', [VoucherController::class, 'validateVoucher'])->name('voucher.validate');
+

@@ -224,6 +224,7 @@
             </form>
         </div>
     </div>
+    
     <script src="{{ asset('js/qrcode.min.js')}}"></script>
 
     <!-- Scripts -->

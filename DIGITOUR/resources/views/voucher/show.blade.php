@@ -6,6 +6,26 @@
     <p><strong>Nombre del beneficiario:</strong> {{ $data['nombre_cliente'] }}</p>
     <p><strong>RUT:</strong> {{ $data['rut'] }}</p>
 
-    <a href="{{ route('voucher.download', $voucher->id) }}" class="btn btn-success mt-3">Descargar QR</a>
+    <!-- Formulario para validar el voucher -->
+    <form action="{{ route('voucher.validate', $voucher->id) }}" method="POST" style="display:inline;">
+        @csrf
+        @method('PATCH')
+        <button type="submit" class="btn btn-success">Validar</button>
+    </form>
+
+    <!-- Mensajes -->
+    <div class="mt-3">
+        @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        @if(session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
+    </div>
 </div>
 @endsection
