@@ -1,19 +1,30 @@
 @extends('templateViews')
+
 @section('contenido')
-<div class="container text-center">
-    <h1>Voucher generado</h1>
-    <p><strong>ID:</strong> {{ $voucher->id }}</p>
-    <p><strong>Nombre del cliente:</strong> {{ $voucher->nombre_cliente }}</p>
-    <p><strong>RUT:</strong> {{ $voucher->rut }}</p>
-    <p><strong>Oferta:</strong> {{ $voucher->oferta_id }}</p>
-    <p><strong>Fecha de emisión:</strong> {{ $voucher->fecha_emision }}</p>
-    <p><strong>Fecha de validación:</strong> {{ $voucher->fecha_validacion }}</p>
-
-    <div>
-        {{-- Renderizar el código QR --}}
-        {!! $qrCode !!}
+<div class="container mt-5">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h2 class="text-center">Voucher a Validar</h2>
+        </div>
+        <div class="card-body">
+            <div class="mb-3">
+                <p class="fw-bold mb-1">Descripción de la oferta:</p>
+                <p class="text-muted">{{ $data['descripcion_oferta'] }}</p>
+            </div>
+            <div class="mb-3">
+                <p class="fw-bold mb-1">Nombre del beneficiario:</p>
+                <p class="text-muted">{{ $data['nombre_cliente'] }}</p>
+            </div>
+            <div class="mb-3">
+                <p class="fw-bold mb-1">RUT:</p>
+                <p class="text-muted">{{ $data['rut'] }}</p>
+            </div>
+        </div>
+        <div class="card-footer text-center">
+            <a href="{{ route('voucher.download', $voucher->id) }}" class="btn btn-lg btn-success">
+                <i class="bi bi-download me-2"></i> Descargar QR
+            </a>
+        </div>
     </div>
-
-    <a href="{{ route('voucher.downloadPdf', $voucher->id) }}" class="btn btn-success mt-3">Descargar PDF</a>
 </div>
 @endsection
