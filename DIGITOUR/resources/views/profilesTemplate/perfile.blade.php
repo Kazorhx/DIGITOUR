@@ -276,7 +276,7 @@
 
     <script src="{{ asset('js/qrcode.min.js')}}"></script>
 
-    <!-- Scripts -->
+    <!-- Scripts -->    
     <script>
         function openModal(offerId) {
             const modal = document.getElementById('voucherModal');

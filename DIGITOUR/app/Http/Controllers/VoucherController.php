@@ -74,14 +74,6 @@ public function show($id)
         ->where('id', $id)
         ->firstOrFail(['id', 'nombre_cliente', 'rut', 'oferta_id']);
 
-    // Si se solicita validación (por ejemplo, a través de un query string ?validate=true)
-  //  if ($request->has('validate') && $request->get('validate') === 'true')
-        // Cambiar el estado del voucher a "2" (validado)
-    //    $voucher->estado_voucher_id = 2;
-      //  $voucher->save();
-
-        // Mostrar un mensaje de éxito directamente en la vista
-      //  session()->flash('success', '¡El voucher ha sido validado correctamente!');
 
     // Acceder a la oferta relacionada
     $descripcionOferta = $voucher->offer->descripcion;
@@ -96,6 +88,39 @@ public function show($id)
     // Pasar los datos a la vista
     return view('voucher.show', compact('data', 'voucher'));
 }
+
+public function validateVoucher($id)
+{
+    try {
+        // Buscar el voucher por ID
+        $voucher = Voucher::findOrFail($id);
+
+        // Verificar el estado actual
+        if ($voucher->estado_voucher_id == 2) {
+            return response()->json([
+                'success' => false,
+                'message' => 'El voucher ya ha sido validado.'
+            ]);
+        }
+
+        // Cambiar el estado del voucher a "2" (validado)
+        $voucher->estado_voucher_id = 2;
+        $voucher->save();
+
+        // Respuesta JSON de éxito
+        return response()->json([
+            'success' => true,
+            'message' => 'El voucher ha sido validado correctamente.'
+        ]);
+    } catch (\Exception $e) {
+        // Manejo de errores
+        return response()->json([
+            'success' => false,
+            'message' => 'Ocurrió un error al validar el voucher.'
+        ]);
+    }
+}
+
 
 public function edit(Voucher $voucher)
 {
@@ -119,33 +144,7 @@ public function destroy(Voucher $voucher)
 {
     //
 }
-/*public function downloadPdf($id)
-{
-    $voucher = Voucher::findOrFail($id);
 
-    // Generar el código QR en formato PNG Base64
-    $qrCode = base64_encode(QrCode::format('png')->size(200)->generate($voucher->url));
 
-    // Crear la vista del PDF
-    $pdf = Pdf::loadView('vouchers.pdf', [
-        'voucher' => $voucher,
-        'qrCode' => $qrCode,
-    ]);
-
-    // Descargar el PDF
-    return $pdf->download('voucher_' . $voucher->id . '.pdf');
-} */
-
-public function validateVoucher($id)
-{
-    $voucher = Voucher::findOrFail($id);
-
-    // Cambiar el estado del voucher a "validado"
-    $voucher->estado_voucher_id = 2; // Estado "Validado"
-    $voucher->save();
-
-    // Redirigir con un mensaje de éxito
-    return redirect()->route('voucher.show', $voucher->id)->with('success', '¡Voucher validado exitosamente!');
-}   
 
 }
